@@ -1,0 +1,48 @@
+(kicad_sch (version 20230121) (generator eeschema)
+
+  (uuid 73ede3a3-6344-40fe-9207-10ff50d388ba)
+
+  (paper "A4")
+
+  (lib_symbols
+  )
+
+
+  (sheet (at 26.67 25.4) (size 30.48 22.86) (fields_autoplaced)
+    (stroke (width 0.1524) (type solid))
+    (fill (color 0 0 0 0.0000))
+    (uuid 6f10bd65-583f-4818-aeb8-8b5e6e37f336)
+    (property "Sheetname" "POWER" (at 26.67 24.6884 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "POWER.kicad_sch" (at 26.67 48.8446 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+    (instances
+      (project "TER_PEDAL"
+        (path "/73ede3a3-6344-40fe-9207-10ff50d388ba" (page "3"))
+      )
+    )
+  )
+
+  (sheet (at 121.92 35.56) (size 27.94 83.82) (fields_autoplaced)
+    (stroke (width 0.1524) (type solid))
+    (fill (color 0 0 0 0.0000))
+    (uuid 7632a94a-0691-4527-83e2-6d814eae7e64)
+    (property "Sheetname" "MICRO" (at 121.92 34.8484 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "MICRO.kicad_sch" (at 121.92 119.9646 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+    (instances
+      (project "TER_PEDAL"
+        (path "/73ede3a3-6344-40fe-9207-10ff50d388ba" (page "2"))
+      )
+    )
+  )
+
+  (sheet_instances
+    (path "/" (page "1"))
+  )
+)
