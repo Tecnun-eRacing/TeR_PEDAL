@@ -338,6 +338,14 @@
     [
       "9549329b-4f41-4937-ad52-b46ec86d3c7d",
       "CAN"
+    ],
+    [
+      "667e740b-7c5a-4284-8e8d-cd79a8a36981",
+      "UNIPORT"
+    ],
+    [
+      "bd370b0f-91e5-4328-9d6f-8dc10ff0cff7",
+      "SENSORS"
     ]
   ],
   "text_variables": {}
