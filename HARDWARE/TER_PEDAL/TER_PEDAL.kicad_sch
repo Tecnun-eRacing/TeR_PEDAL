@@ -8,14 +8,14 @@
   )
 
 
-  (sheet (at 26.67 25.4) (size 30.48 22.86) (fields_autoplaced)
+  (sheet (at 62.23 36.83) (size 30.48 22.86) (fields_autoplaced)
     (stroke (width 0.1524) (type solid))
     (fill (color 0 0 0 0.0000))
     (uuid 6f10bd65-583f-4818-aeb8-8b5e6e37f336)
-    (property "Sheetname" "POWER" (at 26.67 24.6884 0)
+    (property "Sheetname" "POWER" (at 62.23 36.1184 0)
       (effects (font (size 1.27 1.27)) (justify left bottom))
     )
-    (property "Sheetfile" "POWER.kicad_sch" (at 26.67 48.8446 0)
+    (property "Sheetfile" "POWER.kicad_sch" (at 62.23 60.2746 0)
       (effects (font (size 1.27 1.27)) (justify left top))
     )
     (instances
@@ -38,6 +38,23 @@
     (instances
       (project "TER_PEDAL"
         (path "/73ede3a3-6344-40fe-9207-10ff50d388ba" (page "2"))
+      )
+    )
+  )
+
+  (sheet (at 171.45 36.83) (size 31.75 24.13) (fields_autoplaced)
+    (stroke (width 0.1524) (type solid))
+    (fill (color 0 0 0 0.0000))
+    (uuid 9549329b-4f41-4937-ad52-b46ec86d3c7d)
+    (property "Sheetname" "CAN" (at 171.45 36.1184 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "CAN.kicad_sch" (at 171.45 61.5446 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+    (instances
+      (project "TER_PEDAL"
+        (path "/73ede3a3-6344-40fe-9207-10ff50d388ba" (page "4"))
       )
     )
   )
