@@ -51,7 +51,8 @@ uint8_t               TxData[8]; //Header de recepción
 
 uint32_t              TxMailbox; //Mailbox para el periferico
 
-struct ter_pedal_test_apps_t apps; //estructura
+struct ter_pedal_test_apps_t ; //estructura
+
 
 
 /* USER CODE END PV */

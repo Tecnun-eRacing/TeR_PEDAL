@@ -390,7 +390,7 @@
       )
       (project "TER_PEDAL"
         (path "/73ede3a3-6344-40fe-9207-10ff50d388ba/667e740b-7c5a-4284-8e8d-cd79a8a36981"
-          (reference "#PWR019") (unit 1)
+          (reference "#PWR0103") (unit 1)
         )
       )
     )
@@ -432,7 +432,7 @@
       )
       (project "TER_PEDAL"
         (path "/73ede3a3-6344-40fe-9207-10ff50d388ba/667e740b-7c5a-4284-8e8d-cd79a8a36981"
-          (reference "#PWR018") (unit 1)
+          (reference "#PWR0101") (unit 1)
         )
       )
     )
@@ -524,7 +524,7 @@
       )
       (project "TER_PEDAL"
         (path "/73ede3a3-6344-40fe-9207-10ff50d388ba/667e740b-7c5a-4284-8e8d-cd79a8a36981"
-          (reference "#PWR020") (unit 1)
+          (reference "#PWR0102") (unit 1)
         )
       )
     )
