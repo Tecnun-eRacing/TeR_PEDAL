@@ -767,7 +767,7 @@
     (effects (font (size 2 2) (thickness 0.4) bold) (justify left bottom))
     (uuid 11fa9529-e81c-42e8-9b44-f7cf4ea8fa5d)
   )
-  (text "Brake Pedal Position Sensor BPPS" (at 184.15 17.78 0)
+  (text "Brake Pedal Pressure Sensor BPPS" (at 184.15 17.78 0)
     (effects (font (size 2 2) (thickness 0.4) bold) (justify left bottom))
     (uuid 2bf397f7-dfe8-4d13-8fe8-43da42b70da8)
   )
