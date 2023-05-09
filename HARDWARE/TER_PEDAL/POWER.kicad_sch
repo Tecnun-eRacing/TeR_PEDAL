@@ -1406,6 +1406,10 @@
     (uuid 7ad96e7e-86cd-405d-8975-5928e336c87d)
   )
 
+  (label "SWTCH" (at 74.93 29.21 0) (fields_autoplaced)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+    (uuid 653135d9-8e04-48a0-9a12-10b9810882b5)
+  )
   (label "FeedBack" (at 73.66 31.75 180) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify right bottom))
     (uuid 9152d3fb-92b4-41a0-98f1-a7549b62f59f)

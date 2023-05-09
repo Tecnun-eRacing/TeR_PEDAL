@@ -292,6 +292,10 @@
     (effects (font (size 2 2) (thickness 0.4) bold) (justify left bottom))
     (uuid 9f781c45-39fd-4e67-b2a4-a24044abd15b)
   )
+  (text "POWER" (at 64.77 184.15 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+    (uuid bd385ea4-2264-4cbd-acac-2c295cb05346)
+  )
 
   (label "IMP_LED" (at 161.29 91.44 180) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify right bottom))
