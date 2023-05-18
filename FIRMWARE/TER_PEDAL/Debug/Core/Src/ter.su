@@ -1,0 +1,13 @@
+../Core/Src/ter.c:35:23:pack_left_shift_u8	16	static
+../Core/Src/ter.c:43:23:unpack_right_shift_u8	16	static
+../Core/Src/ter.c:51:5:ter_apps_pack	24	static
+../Core/Src/ter.c:69:5:ter_apps_unpack	24	static
+../Core/Src/ter.c:85:9:ter_apps_apps_1_encode	16	static
+../Core/Src/ter.c:90:8:ter_apps_apps_1_decode	16	static
+../Core/Src/ter.c:95:6:ter_apps_apps_1_is_in_range	16	static
+../Core/Src/ter.c:102:9:ter_apps_apps_2_encode	16	static
+../Core/Src/ter.c:107:8:ter_apps_apps_2_decode	16	static
+../Core/Src/ter.c:112:6:ter_apps_apps_2_is_in_range	16	static
+../Core/Src/ter.c:119:9:ter_apps_imp_flags_encode	16	static
+../Core/Src/ter.c:124:8:ter_apps_imp_flags_decode	16	static
+../Core/Src/ter.c:129:6:ter_apps_imp_flags_is_in_range	16	static

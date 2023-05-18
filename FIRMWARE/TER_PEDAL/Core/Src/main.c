@@ -51,7 +51,7 @@ uint8_t               TxData[8]; //Header de recepción
 
 uint32_t              TxMailbox; //Mailbox para el periferico
 
-struct ter_pedal_test_apps_t ; //estructura
+struct ter_apps_t apps; //estructura
 
 
 
@@ -106,10 +106,10 @@ int main(void)
   HAL_ADC_Start_IT (&hadc1); //Activamos las interrupciones del ADC
   HAL_CAN_Start(&hcan); //Activamos el can
 
-  TxHeader.IDE = TER_PEDAL_TEST_APPS_FRAME_ID;
-  TxHeader.StdId = TER_PEDAL_TEST_APPS_IS_EXTENDED;
+  TxHeader.IDE = TER_APPS_FRAME_ID;
+  TxHeader.StdId = TER_APPS_IS_EXTENDED;
   TxHeader.RTR = CAN_RTR_DATA;
-  TxHeader.DLC = TER_PEDAL_TEST_APPS_LENGTH;
+  TxHeader.DLC = TER_APPS_LENGTH;
 
 
   /* USER CODE END 2 */
@@ -118,9 +118,9 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-
-	  apps.accel_1 = (HAL_ADC_GetValue(&hadc1)*100)/4096; //Cogemos el dato
-	  ter_pedal_test_apps_pack(TxData, &apps, sizeof(TxData));
+	  apps.apps_1 = (HAL_ADC_GetValue(&hadc1)*255)/4096; //Lectura del ADC 1
+	  apps.apps_2 = (HAL_ADC_GetValue(&hadc1)*255)/4096; //Lectura del ADC 2
+	  ter_apps_pack(TxData, &apps, sizeof(TxData));
 
 	  if (HAL_CAN_AddTxMessage(&hcan, &TxHeader, TxData, &TxMailbox) != HAL_OK)
 	  {

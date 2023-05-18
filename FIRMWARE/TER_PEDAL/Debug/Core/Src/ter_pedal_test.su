@@ -1,7 +1,0 @@
-../Core/Src/ter_pedal_test.c:35:23:pack_left_shift_u8	16	static
-../Core/Src/ter_pedal_test.c:43:23:unpack_right_shift_u8	16	static
-../Core/Src/ter_pedal_test.c:51:5:ter_pedal_test_apps_pack	24	static
-../Core/Src/ter_pedal_test.c:67:5:ter_pedal_test_apps_unpack	24	static
-../Core/Src/ter_pedal_test.c:81:9:ter_pedal_test_apps_accel_1_encode	16	static
-../Core/Src/ter_pedal_test.c:86:7:ter_pedal_test_apps_accel_1_decode	16	static
-../Core/Src/ter_pedal_test.c:91:6:ter_pedal_test_apps_accel_1_is_in_range	16	static

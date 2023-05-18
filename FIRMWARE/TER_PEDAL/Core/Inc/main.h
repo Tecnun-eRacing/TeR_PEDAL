@@ -31,7 +31,7 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "ter_pedal_test.h" // CAN DBC
+#include "ter.h" // Master CAN DBC
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
