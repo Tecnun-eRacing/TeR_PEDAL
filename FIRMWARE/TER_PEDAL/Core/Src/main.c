@@ -40,18 +40,22 @@
 
 /* Private variables ---------------------------------------------------------*/
 ADC_HandleTypeDef hadc1;
+DMA_HandleTypeDef hdma_adc1;
 
 CAN_HandleTypeDef hcan;
 
 /* USER CODE BEGIN PV */
-
 CAN_TxHeaderTypeDef   TxHeader; //Header de transmisión
 
 uint8_t               TxData[8]; //Header de recepción
 
 uint32_t              TxMailbox; //Mailbox para el periferico
-
-struct ter_apps_t apps; //estructura
+//Implausabilities
+uint32_t imp_timestamp;
+bool apps_imp = 0; //Estado del implausability
+struct ter_apps_t apps; //estructura CA
+//Estructura de lectura para el ADC
+uint32_t adcReadings[3]; //32*3, el adc saca 12 bits alineados a la derecha
 
 
 
@@ -60,10 +64,11 @@ struct ter_apps_t apps; //estructura
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
+static void MX_DMA_Init(void);
 static void MX_ADC1_Init(void);
 static void MX_CAN_Init(void);
 /* USER CODE BEGIN PFP */
-
+void readSensors(void);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -99,11 +104,15 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_DMA_Init();
   MX_ADC1_Init();
   MX_CAN_Init();
   /* USER CODE BEGIN 2 */
+  //Inicializamos el DMA para que copie nuestros datos al buffer de lecturas
+  //Hemos desactivado las interrupciones del mismo en el NVIC para que no obstruyan, solo nos interesa que anden disponibles
+  HAL_ADC_Start_DMA(&hadc1, &adcReadings, 3); // Arrancamos el ADC en modo DMA
 
-  HAL_ADC_Start_IT (&hadc1); //Activamos las interrupciones del ADC
+  //Inicializacion del periferico CAN
   HAL_CAN_Start(&hcan); //Activamos el can
 
   TxHeader.IDE = TER_APPS_FRAME_ID;
@@ -118,8 +127,8 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  apps.apps_1 = (HAL_ADC_GetValue(&hadc1)*255)/4096; //Lectura del ADC 1
-	  apps.apps_2 = (HAL_ADC_GetValue(&hadc1)*255)/4096; //Lectura del ADC 2
+	  readSensors();
+	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, apps_imp);
 	  ter_apps_pack(TxData, &apps, sizeof(TxData));
 
 	  if (HAL_CAN_AddTxMessage(&hcan, &TxHeader, TxData, &TxMailbox) != HAL_OK)
@@ -128,6 +137,8 @@ int main(void)
 	  }
 
 	  HAL_Delay(100);
+
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -199,12 +210,12 @@ static void MX_ADC1_Init(void)
   /** Common config
   */
   hadc1.Instance = ADC1;
-  hadc1.Init.ScanConvMode = ADC_SCAN_DISABLE;
+  hadc1.Init.ScanConvMode = ADC_SCAN_ENABLE;
   hadc1.Init.ContinuousConvMode = ENABLE;
   hadc1.Init.DiscontinuousConvMode = DISABLE;
   hadc1.Init.ExternalTrigConv = ADC_SOFTWARE_START;
   hadc1.Init.DataAlign = ADC_DATAALIGN_RIGHT;
-  hadc1.Init.NbrOfConversion = 1;
+  hadc1.Init.NbrOfConversion = 3;
   if (HAL_ADC_Init(&hadc1) != HAL_OK)
   {
     Error_Handler();
@@ -215,6 +226,24 @@ static void MX_ADC1_Init(void)
   sConfig.Channel = ADC_CHANNEL_7;
   sConfig.Rank = ADC_REGULAR_RANK_1;
   sConfig.SamplingTime = ADC_SAMPLETIME_1CYCLE_5;
+  if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  /** Configure Regular Channel
+  */
+  sConfig.Channel = ADC_CHANNEL_6;
+  sConfig.Rank = ADC_REGULAR_RANK_2;
+  if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  /** Configure Regular Channel
+  */
+  sConfig.Channel = ADC_CHANNEL_9;
+  sConfig.Rank = ADC_REGULAR_RANK_3;
   if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
   {
     Error_Handler();
@@ -263,6 +292,17 @@ static void MX_CAN_Init(void)
 }
 
 /**
+  * Enable DMA controller clock
+  */
+static void MX_DMA_Init(void)
+{
+
+  /* DMA controller clock enable */
+  __HAL_RCC_DMA1_CLK_ENABLE();
+
+}
+
+/**
   * @brief GPIO Initialization Function
   * @param None
   * @retval None
@@ -288,7 +328,24 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+void readSensors(){
+	//Se leen y convierten las señales
+	 apps.apps_1 = (adcReadings[0]*255)/4096; //Lectura del ADC 1
+	 apps.apps_2 = (adcReadings[1]*255)/4096; //Lectura del ADC 2
+	 //Check for implausability
+	 if(abs(apps.apps_1-apps.apps_2) > 255*10/100){//T 11.8.9 Desviacion de 10 puntos en %
+		if(imp_timestamp == 0){//Si no había timestamp activalo
+			imp_timestamp = HAL_GetTick();
+		}else if(HAL_GetTick() - imp_timestamp > 100){//Si el tiempo es mayor que 100 millis
+			apps_imp = 1; //Activa el implausability y dejalo latched
+			imp_timestamp = 0;//Resetea el counter
+		}
+	 }else{
+		 imp_timestamp = 0;
+	 }
 
+
+}
 /* USER CODE END 4 */
 
 /**
