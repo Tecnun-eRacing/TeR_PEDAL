@@ -25,6 +25,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include <stdlib.h>
 #include "ter.h" // Master CAN DBC
 #include "ee.h"  //Librería para emulación eeprom, guardar valores de calibracion en la flash
 /* USER CODE END Includes */
@@ -46,15 +47,27 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
+//Datos transmision
 CAN_TxHeaderTypeDef   TxHeader; //Header de transmisión
-
 uint8_t               TxData[8]; //Header de recepción
-
 uint32_t              TxMailbox; //Mailbox para el periferico
+//Datos recepcion
+CAN_RxHeaderTypeDef RxHeader;
+uint8_t RxData[8];
+
 //Implausabilities
 uint32_t imp_timestamp;
 bool apps_imp = 0; //Estado del implausability
-struct ter_apps_t apps; //estructura CA
+
+//Offsets de los sensores {Sens1,Sens2}
+struct offsets_t{
+uint32_t low[2];
+uint32_t high[2];
+}offset,test;
+//Mensajes
+struct ter_apps_t apps;//Aceleradores
+struct ter_bpps_t bpps;//Freno
+
 //Estructura de lectura para el ADC
 uint32_t adcReadings[3]; //32*3, el adc saca 12 bits alineados a la derecha
 
@@ -65,7 +78,10 @@ uint32_t adcReadings[3]; //32*3, el adc saca 12 bits alineados a la derecha
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
-void readSensors(void);
+void command(uint8_t cmd, uint8_t* args); //Gestiona los comandos recibidos
+void readSensors(void); //Lectura de todos los sensores
+uint32_t map(uint32_t x, uint32_t in_min, uint32_t in_max, uint32_t out_min, uint32_t out_max);//Mapea un intervalo sobre otro (Cogida de Arduino)
+void sendCan(void); //Envio de todos los mensajes
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -110,13 +126,26 @@ int main(void)
   HAL_ADC_Start_DMA(&hadc1, adcReadings, 3); // Arrancamos el ADC en modo DMA
 
   //Inicializacion del periferico CAN
-  HAL_CAN_Start(&hcan); //Activamos el can
+   HAL_CAN_Start(&hcan); //Activamos el can
+   HAL_CAN_ActivateNotification(&hcan, CAN_IT_RX_FIFO1_MSG_PENDING); //Activamos notificación de mensaje pendiente a lectura
 
-  TxHeader.IDE = TER_APPS_FRAME_ID;
-  TxHeader.StdId = TER_APPS_IS_EXTENDED;
+//Esto hay que moverlo al envio
+  TxHeader.IDE = CAN_ID_STD;
+  TxHeader.StdId = TER_APPS_FRAME_ID;;
   TxHeader.RTR = CAN_RTR_DATA;
   TxHeader.DLC = TER_APPS_LENGTH;
 
+
+  //Carga de los offsets
+  ee_read(0, sizeof(offset), (uint8_t*)&offset);//Lee de memoria el struct
+/*Para Programar si se borra la flash
+  offset.high[0] = 4096;
+  offset.high[1] = 4096;
+  offset.low[0] = 0;
+  offset.low[0] = 0;
+  ee_writeToRam(0, sizeof(offset), &offset);
+  ee_commit();
+*/
 
   /* USER CODE END 2 */
 
@@ -124,7 +153,13 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+	  //Zona Lectura de Sensores
 	  readSensors();
+	  //Comprobación de lectura de mensajes
+	  HAL_CAN_GetRxMessage(&hcan, CAN_RX_FIFO0, &RxHeader, RxData);
+
+
+
 	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, apps_imp);
 	  ter_apps_pack(TxData, &apps, sizeof(TxData));
 
@@ -189,8 +224,8 @@ void SystemClock_Config(void)
 /* USER CODE BEGIN 4 */
 void readSensors(){
 	//Se leen y convierten las señales
-	 apps.apps_1 = (adcReadings[0]*255)/4096; //Lectura del ADC 1
-	 apps.apps_2 = (adcReadings[1]*255)/4096; //Lectura del ADC 2
+	 apps.apps_1 = map(adcReadings[0], offset.low[0], offset.high[0], 0, 255); //Lectura del ADC 1
+	 apps.apps_2 = map(adcReadings[1], offset.low[1], offset.high[1], 0, 255);//Lectura del ADC 2
 	 //Check for implausability
 	 if(abs(apps.apps_1-apps.apps_2) > 255*10/100){//T 11.8.9 Desviacion de 10 puntos en %
 		if(imp_timestamp == 0){//Si no había timestamp activalo
@@ -199,10 +234,42 @@ void readSensors(){
 			apps_imp = 1; //Activa el implausability y dejalo latched
 			imp_timestamp = 0;//Resetea el counter
 		}
-	 }else{
+	 }else{//Si vuelve a estar bien desactiva el contador
 		 imp_timestamp = 0;
 	 }
 
+}
+
+void HAL_CAN_RxFifo1MsgPendingCallback(CAN_HandleTypeDef *hcan)
+{
+	HAL_CAN_GetRxMessage(&hcan, CAN_RX_FIFO0, &RxHeader, RxData); //Recoge el mensaje
+	if(RxHeader.StdId == TER_PEDAL_CMD_FRAME_ID){//Issued Command
+		command(RxData[0],&RxData[1]);//Envia comando y argumentos
+		}
+}
+
+void command(uint8_t cmd, uint8_t* args){
+	switch(cmd){
+	case 1: //Calibrate ACC 0% Pos and Store
+		offset.low[0] = adcReadings[0];//Recoje el valor actual
+		offset.low[1] = adcReadings[1];
+		ee_writeToRam(0, sizeof(offset), (uint8_t*)&offset);//Almacena
+	break;
+
+	case 2: //Calibrate ACC 100% Pos and Store
+		offset.high[0] = adcReadings[0];//Recoje el valor actual
+		offset.high[1] = adcReadings[1];
+		ee_writeToRam(0, sizeof(offset), (uint8_t*)&offset);//Almacena
+	break;
+
+
+	}
+
+}
+
+uint32_t map(uint32_t x, uint32_t in_min, uint32_t in_max, uint32_t out_min, uint32_t out_max){
+	long val = (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+	return (val > 0) ? val : 0; //Trukelele mirate lo q es un ternary operator man (Satura por debajo de 0)
 }
 /* USER CODE END 4 */
 

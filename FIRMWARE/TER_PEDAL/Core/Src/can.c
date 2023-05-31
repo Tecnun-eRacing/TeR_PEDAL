@@ -21,7 +21,7 @@
 #include "can.h"
 
 /* USER CODE BEGIN 0 */
-
+#include "ter.h"
 /* USER CODE END 0 */
 
 CAN_HandleTypeDef hcan;
@@ -86,7 +86,22 @@ void HAL_CAN_MspInit(CAN_HandleTypeDef* canHandle)
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
+    /* CAN1 interrupt Init */
+    HAL_NVIC_SetPriority(USB_LP_CAN1_RX0_IRQn, 0, 0);
+    HAL_NVIC_EnableIRQ(USB_LP_CAN1_RX0_IRQn);
+    HAL_NVIC_SetPriority(CAN1_RX1_IRQn, 0, 0);
+    HAL_NVIC_EnableIRQ(CAN1_RX1_IRQn);
   /* USER CODE BEGIN CAN1_MspInit 1 */
+    CAN_FilterTypeDef canfilterconfig;
+    canfilterconfig.FilterActivation = CAN_FILTER_ENABLE;
+    canfilterconfig.FilterBank = 18;  // which filter bank to use from the assigned ones
+    canfilterconfig.FilterFIFOAssignment = CAN_FILTER_FIFO1;
+    canfilterconfig.FilterIdHigh = TER_PEDAL_CMD_FRAME_ID<<5;//El std id empieza allí esta pensado pa canfd con 29bits
+    canfilterconfig.FilterIdLow = 0;
+    canfilterconfig.FilterMode = CAN_FILTERMODE_IDLIST;
+    canfilterconfig.FilterScale = CAN_FILTERSCALE_32BIT;
+    canfilterconfig.SlaveStartFilterBank = 20;  // how many filters to assign to the CAN (master can)
+    HAL_CAN_ConfigFilter(&hcan, &canfilterconfig);
 
   /* USER CODE END CAN1_MspInit 1 */
   }
@@ -109,6 +124,9 @@ void HAL_CAN_MspDeInit(CAN_HandleTypeDef* canHandle)
     */
     HAL_GPIO_DeInit(GPIOA, GPIO_PIN_11|GPIO_PIN_12);
 
+    /* CAN1 interrupt Deinit */
+    HAL_NVIC_DisableIRQ(USB_LP_CAN1_RX0_IRQn);
+    HAL_NVIC_DisableIRQ(CAN1_RX1_IRQn);
   /* USER CODE BEGIN CAN1_MspDeInit 1 */
 
   /* USER CODE END CAN1_MspDeInit 1 */
