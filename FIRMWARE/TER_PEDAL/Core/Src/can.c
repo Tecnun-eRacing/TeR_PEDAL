@@ -54,7 +54,19 @@ void MX_CAN_Init(void)
     Error_Handler();
   }
   /* USER CODE BEGIN CAN_Init 2 */
+  CAN_FilterTypeDef canfilterconfig;
 
+    canfilterconfig.FilterActivation = CAN_FILTER_ENABLE;
+    canfilterconfig.FilterBank = 0;  // which filter bank to use from the assigned ones
+    canfilterconfig.FilterFIFOAssignment = CAN_FILTER_FIFO0;
+    canfilterconfig.FilterIdHigh = 0x003<<5;
+    canfilterconfig.FilterIdLow = 0;
+    canfilterconfig.FilterMaskIdHigh = 0x003<<5;
+    canfilterconfig.FilterMaskIdLow = 0x0000;
+    canfilterconfig.FilterMode = CAN_FILTERMODE_IDMASK;
+    canfilterconfig.FilterScale = CAN_FILTERSCALE_32BIT;
+    canfilterconfig.SlaveStartFilterBank = 0;  // doesn't matter in single can controllers
+    HAL_CAN_ConfigFilter(&hcan, &canfilterconfig);
   /* USER CODE END CAN_Init 2 */
 
 }
@@ -86,22 +98,7 @@ void HAL_CAN_MspInit(CAN_HandleTypeDef* canHandle)
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-    /* CAN1 interrupt Init */
-    HAL_NVIC_SetPriority(USB_LP_CAN1_RX0_IRQn, 0, 0);
-    HAL_NVIC_EnableIRQ(USB_LP_CAN1_RX0_IRQn);
-    HAL_NVIC_SetPriority(CAN1_RX1_IRQn, 0, 0);
-    HAL_NVIC_EnableIRQ(CAN1_RX1_IRQn);
   /* USER CODE BEGIN CAN1_MspInit 1 */
-    CAN_FilterTypeDef canfilterconfig;
-    canfilterconfig.FilterActivation = CAN_FILTER_ENABLE;
-    canfilterconfig.FilterBank = 18;  // which filter bank to use from the assigned ones
-    canfilterconfig.FilterFIFOAssignment = CAN_FILTER_FIFO1;
-    canfilterconfig.FilterIdHigh = TER_PEDAL_CMD_FRAME_ID<<5;//El std id empieza allí esta pensado pa canfd con 29bits
-    canfilterconfig.FilterIdLow = 0;
-    canfilterconfig.FilterMode = CAN_FILTERMODE_IDLIST;
-    canfilterconfig.FilterScale = CAN_FILTERSCALE_32BIT;
-    canfilterconfig.SlaveStartFilterBank = 20;  // how many filters to assign to the CAN (master can)
-    HAL_CAN_ConfigFilter(&hcan, &canfilterconfig);
 
   /* USER CODE END CAN1_MspInit 1 */
   }
@@ -126,7 +123,6 @@ void HAL_CAN_MspDeInit(CAN_HandleTypeDef* canHandle)
 
     /* CAN1 interrupt Deinit */
     HAL_NVIC_DisableIRQ(USB_LP_CAN1_RX0_IRQn);
-    HAL_NVIC_DisableIRQ(CAN1_RX1_IRQn);
   /* USER CODE BEGIN CAN1_MspDeInit 1 */
 
   /* USER CODE END CAN1_MspDeInit 1 */
