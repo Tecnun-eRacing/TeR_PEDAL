@@ -1,0 +1,3 @@
+[submodule "FIRMWARE/TER_PEDAL/DBC"]
+	path = FIRMWARE/TER_PEDAL/DBC
+	url = https://github.com/Tecnun-eRacing/TER_DATABASES
