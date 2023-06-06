@@ -12,9 +12,9 @@
 ../DBC/ter.c:134:9:ter_apps_apps_2_encode	16	static
 ../DBC/ter.c:139:8:ter_apps_apps_2_decode	16	static
 ../DBC/ter.c:144:6:ter_apps_apps_2_is_in_range	16	static
-../DBC/ter.c:151:9:ter_apps_imp_flags_encode	16	static
-../DBC/ter.c:156:8:ter_apps_imp_flags_decode	16	static
-../DBC/ter.c:161:6:ter_apps_imp_flags_is_in_range	16	static
+../DBC/ter.c:151:9:ter_apps_imp_flag_encode	16	static
+../DBC/ter.c:156:8:ter_apps_imp_flag_decode	16	static
+../DBC/ter.c:161:6:ter_apps_imp_flag_is_in_range	16	static
 ../DBC/ter.c:168:5:ter_pedal_cmd_pack	24	static
 ../DBC/ter.c:191:5:ter_pedal_cmd_unpack	72	static
 ../DBC/ter.c:212:9:ter_pedal_cmd_cmd_encode	16	static

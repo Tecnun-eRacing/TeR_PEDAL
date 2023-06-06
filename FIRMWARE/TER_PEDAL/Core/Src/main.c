@@ -240,13 +240,13 @@ void readSensors() {
 		if (imp_timestamp == 0) {	 //Si no había timestamp activalo
 			imp_timestamp = HAL_GetTick();
 		} else if (HAL_GetTick() - imp_timestamp > 100) {//Si el tiempo es mayor que 100 millis
-			apps.imp_flags = 1; //Activa el implausability y dejalo latched
+			apps.imp_flag = 1; //Activa el implausability y dejalo latched
 			imp_timestamp = 0; //Resetea el counter
 		}
 	} else { //Si vuelve a estar bien desactiva el contador
 		imp_timestamp = 0;
 	}
-	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, apps.imp_flags); //Actualizamos el estado del led
+	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, apps.imp_flag); //Actualizamos el estado del led
 }
 
 
