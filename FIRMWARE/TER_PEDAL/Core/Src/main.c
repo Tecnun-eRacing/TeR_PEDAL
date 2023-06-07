@@ -57,6 +57,7 @@ uint8_t RxData[8];
 
 //Implausabilities
 uint32_t imp_timestamp;
+
 //Offsets de los sensores {Sens1,Sens2,Brake}
 struct offsets_t {
 	uint32_t low[3];
@@ -141,21 +142,13 @@ int main(void)
 	//Carga de los offsets
 	ee_read(0, sizeof(offset), (uint8_t*) &offset); //Lee de memoria el struct
 	//Plausability for apps calibration value
-	if(offset.high[0] == 0 ||offset.high[1] == 0||offset.high[2] == 0){
-		offset.high[0] = 4096;//Valores por defecto
-		offset.high[1] = 4096;
-		offset.high[2] = 4096;
-		offset.low[0] = 0;
-		offset.low[1] = 0;
-		offset.low[1] = 0;
-		ee_writeToRam(0, sizeof(offset), &offset);
-		ee_commit();
-	}
 	/*Para Programar si se borra la flash
-	 offset.high[0] = 4096;
+	 offset.high[0] = 4096;//Valores por defecto
 	 offset.high[1] = 4096;
+	 offset.high[2] = 4096;
 	 offset.low[0] = 0;
 	 offset.low[1] = 0;
+	 offset.low[2] = 0;
 	 ee_writeToRam(0, sizeof(offset), &offset);
 	 ee_commit();
 	 */
@@ -169,7 +162,7 @@ int main(void)
 		readSensors();
 		//envio del CAN
 		sendCan();
-		HAL_Delay(100);
+		HAL_Delay(100);//Por ahora llevar el envio de mensajes así, para ser elegantes habría que utilizar interrupciones temporizadas.
 
     /* USER CODE END WHILE */
 
@@ -237,7 +230,7 @@ void readSensors() {
 	//Se leen y convierten las señales
 	apps.apps_1 = map(adcReadings[0], offset.low[0], offset.high[0], 0, 255); //Lectura del ADC 1
 	apps.apps_2 = map(adcReadings[1], offset.low[1], offset.high[1], 0, 255); //Lectura del ADC 2
-	bpps.bpps = map(adcReadings[1], offset.low[1], offset.high[1], 0, 255); //Lectura del ADC 2
+	bpps.bpps = map(adcReadings[1], offset.low[3], offset.high[3], 0, 255); //Lectura del ADC 2
 	//Check for implausability
 	if (abs(apps.apps_1 - apps.apps_2) > 255 * 10 / 100) {//T 11.8.9 Desviacion de 10 puntos en %
 		if (imp_timestamp == 0) {	 //Si no había timestamp activalo
@@ -273,8 +266,12 @@ void command(uint8_t cmd, uint8_t *args) {
 		break;
 
 	case 4://Calibrate BPPS 100% Pos
-		offset.low[3] = adcReadings[3]; //Recoje el valor actual
+		offset.high[3] = adcReadings[3]; //Recoje el valor actual
 		ee_writeToRam(0, sizeof(offset), (uint8_t*) &offset); //Almacena
+		break;
+
+	case 5://Reset de la implausability
+		apps.imp_flag = 0;
 		break;
 
 
@@ -298,7 +295,7 @@ void sendCan(){
 	TxHeader.StdId = TER_BPPS_FRAME_ID;
 	TxHeader.RTR = CAN_RTR_DATA;
 	TxHeader.DLC = TER_BPPS_LENGTH;
-	ter_apps_pack(TxData, &bpps, sizeof(TxData)); //Empaquetamos
+	ter_bpps_pack(TxData, &bpps, sizeof(TxData)); //Empaquetamos
 	if (HAL_CAN_AddTxMessage(&hcan, &TxHeader, TxData, &TxMailbox) != HAL_OK) {
 		Error_Handler();
 	}
