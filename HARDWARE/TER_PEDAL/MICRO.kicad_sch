@@ -2265,7 +2265,7 @@
     (property "Value" "8mHz" (at 31.75 153.67 0)
       (effects (font (size 1.27 1.27)))
     )
-    (property "Footprint" "Crystal:Crystal_HC52-6mm_Vertical" (at 31.75 157.48 0)
+    (property "Footprint" "Crystal:Crystal_SMD_5032-2Pin_5.0x3.2mm" (at 31.75 157.48 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (at 31.75 157.48 0)

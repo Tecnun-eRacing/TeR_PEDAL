@@ -845,7 +845,7 @@
     (property "Reference" "C23" (at 248.92 45.72 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Value" "10u" (at 246.38 49.53 0)
+    (property "Value" "10u" (at 248.92 49.53 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Footprint" "Capacitor_SMD:C_0603_1608Metric" (at 255.27 46.99 0)
