@@ -1,0 +1,9 @@
+../Core/Src/main.c:101:5:main	1
+../Core/Src/main.c:180:6:SystemClock_Config	4
+../Core/Src/main.c:223:13:MX_NVIC_Init	1
+../Core/Src/main.c:231:6:readSensors	4
+../Core/Src/main.c:253:6:command	6
+../Core/Src/main.c:286:6:sendCan	3
+../Core/Src/main.c:312:10:map	1
+../Core/Src/main.c:319:6:HAL_CAN_RxFifo0MsgPendingCallback	2
+../Core/Src/main.c:331:6:Error_Handler	1

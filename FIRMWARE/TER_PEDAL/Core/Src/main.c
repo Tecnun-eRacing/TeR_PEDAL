@@ -58,10 +58,10 @@ uint8_t RxData[8];
 //Implausabilities
 uint32_t imp_timestamp;
 
-//Offsets de los sensores {Sens1,Sens2,Brake}
+//Offsets de los sensores {Steer,APPS1,APPS2,Brake}
 struct offsets_t {
-	uint32_t low[3];
-	uint32_t high[3];
+	uint32_t low[4];
+	uint32_t high[4];
 } offset, test;
 //Mensajes
 struct ter_apps_t apps; //Aceleradores
@@ -131,7 +131,7 @@ int main(void)
   /* USER CODE BEGIN 2 */
 	//Inicializamos el DMA para que copie nuestros datos al buffer de lecturas
 	//Hemos desactivado las interrupciones del mismo en el NVIC para que no obstruyan, solo nos interesa que anden disponibles
-	HAL_ADC_Start_DMA(&hadc1, adcReadings, 3); // Arrancamos el ADC en modo DMA
+	HAL_ADC_Start_DMA(&hadc1, adcReadings, 4); // Arrancamos el ADC en modo DMA
 
 	//Inicializacion del periferico CAN
 	HAL_CAN_Start(&hcan); //Activamos el can
@@ -146,9 +146,11 @@ int main(void)
 	 offset.high[0] = 4096;//Valores por defecto
 	 offset.high[1] = 4096;
 	 offset.high[2] = 4096;
+	 offset.high[3] = 4096;
 	 offset.low[0] = 0;
 	 offset.low[1] = 0;
 	 offset.low[2] = 0;
+	 offset.low[3] = 0;
 	 ee_writeToRam(0, sizeof(offset), &offset);
 	 ee_commit();
 	 */
@@ -228,9 +230,10 @@ static void MX_NVIC_Init(void)
 /* USER CODE BEGIN 4 */
 void readSensors() {
 	//Se leen y convierten las señales
-	apps.apps_1 = map(adcReadings[0], offset.low[0], offset.high[0], 0, 255); //Lectura del ADC 1
-	apps.apps_2 = map(adcReadings[1], offset.low[1], offset.high[1], 0, 255); //Lectura del ADC 2
+	apps.apps_1 = map(adcReadings[0], offset.low[1], offset.high[1], 0, 255); //Lectura del ADC 1
+	apps.apps_2 = map(adcReadings[1], offset.low[2], offset.high[2], 0, 255); //Lectura del ADC 2
 	bpps.bpps = map(adcReadings[1], offset.low[3], offset.high[3], 0, 255); //Lectura del ADC 2
+
 	//Check for implausability
 	if (abs(apps.apps_1 - apps.apps_2) > 255 * 10 / 100) {//T 11.8.9 Desviacion de 10 puntos en %
 		if (imp_timestamp == 0) {	 //Si no había timestamp activalo
