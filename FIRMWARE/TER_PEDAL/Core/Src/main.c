@@ -66,9 +66,10 @@ struct offsets_t {
 //Mensajes
 struct ter_apps_t apps; //Aceleradores
 struct ter_bpps_t bpps; //Freno
+struct ter_steer_t steer; //Volante
 
 //Estructura de lectura para el ADC
-uint32_t adcReadings[3]; //32*3, el adc saca 12 bits alineados a la derecha
+uint32_t adcReadings[4]; //32*3, el adc saca 12 bits alineados a la derecha
 
 /* USER CODE END PV */
 
@@ -78,7 +79,7 @@ static void MX_NVIC_Init(void);
 /* USER CODE BEGIN PFP */
 void command(uint8_t cmd, uint8_t *args); //Gestiona los comandos recibidos
 void readSensors(void); //Lectura de todos los sensores
-uint32_t map(uint32_t x, uint32_t in_min, uint32_t in_max, uint32_t out_min,uint32_t out_max); //Mapea un intervalo sobre otro (Cogida de Arduino)
+int32_t map(int32_t x, int32_t in_min, int32_t in_max, int32_t out_min,int32_t out_max); //Mapea un intervalo sobre otro (Cogida de Arduino)
 void sendCan(void); //Envio de todos los mensajes
 
 
@@ -229,10 +230,12 @@ static void MX_NVIC_Init(void)
 
 /* USER CODE BEGIN 4 */
 void readSensors() {
+
 	//Se leen y convierten las señales
-	apps.apps_1 = map(adcReadings[0], offset.low[1], offset.high[1], 0, 255); //Lectura del ADC 1
-	apps.apps_2 = map(adcReadings[1], offset.low[2], offset.high[2], 0, 255); //Lectura del ADC 2
-	bpps.bpps = map(adcReadings[1], offset.low[3], offset.high[3], 0, 255); //Lectura del ADC 2
+	apps.apps_1 = map(adcReadings[0], offset.low[0], offset.high[0], 0, 255); //Lectura de APPS1
+	apps.apps_2 = map(adcReadings[1], offset.low[2], offset.high[1], 0, 255); //Lectura del APPS2
+	bpps.bpps = map(adcReadings[2], offset.low[2], offset.high[2], 0, 255); //Lectura del PRESUROMETRO
+	steer.angle = map(adcReadings[3],offset.low[3], offset.high[3], -360, 360); //Lectura ANGULO de giro (Poner factor)
 
 	//Check for implausability
 	if (abs(apps.apps_1 - apps.apps_2) > 255 * 10 / 100) {//T 11.8.9 Desviacion de 10 puntos en %
@@ -302,17 +305,25 @@ void sendCan(){
 	if (HAL_CAN_AddTxMessage(&hcan, &TxHeader, TxData, &TxMailbox) != HAL_OK) {
 		Error_Handler();
 	}
-
-
+	//STEER
+	//BPPS
+	TxHeader.IDE = CAN_ID_STD;
+	TxHeader.StdId = TER_STEER_FRAME_ID;
+	TxHeader.RTR = CAN_RTR_DATA;
+	TxHeader.DLC = TER_STEER_LENGTH;
+	ter_steer_pack(TxData, &steer, sizeof(TxData)); //Empaquetamos
+	if (HAL_CAN_AddTxMessage(&hcan, &TxHeader, TxData, &TxMailbox) != HAL_OK) {
+		Error_Handler();
+	}
 
 
 
 }
 
-uint32_t map(uint32_t x, uint32_t in_min, uint32_t in_max, uint32_t out_min,
-		uint32_t out_max) {
+int32_t map(int32_t x, int32_t in_min, int32_t in_max, int32_t out_min,
+		int32_t out_max) {
 	long val = (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
-	return (val > 0) ? val : 0; //Trukelele mirate lo q es un ternary operator man (Satura por debajo de 0)
+	return  val;
 }
 
 ///////////////////////////////////////////////////////////////[Interrupciones]////////////////////////////////////////////////////////////////////////////////
