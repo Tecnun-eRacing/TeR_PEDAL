@@ -447,7 +447,7 @@
       "idf": "",
       "netlist": "",
       "specctra_dsn": "",
-      "step": "",
+      "step": "TER_PEDAL.step",
       "vrml": ""
     },
     "page_layout_descr_file": ""
