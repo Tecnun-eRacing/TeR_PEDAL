@@ -22,6 +22,7 @@
 
 /* USER CODE BEGIN 0 */
 #include "ter.h"
+
 /* USER CODE END 0 */
 
 CAN_HandleTypeDef hcan;
@@ -41,8 +42,8 @@ void MX_CAN_Init(void)
   hcan.Init.Prescaler = 1;
   hcan.Init.Mode = CAN_MODE_NORMAL;
   hcan.Init.SyncJumpWidth = CAN_SJW_2TQ;
-  hcan.Init.TimeSeg1 = CAN_BS1_13TQ;
-  hcan.Init.TimeSeg2 = CAN_BS2_2TQ;
+  hcan.Init.TimeSeg1 = CAN_BS1_6TQ;
+  hcan.Init.TimeSeg2 = CAN_BS2_1TQ;
   hcan.Init.TimeTriggeredMode = DISABLE;
   hcan.Init.AutoBusOff = DISABLE;
   hcan.Init.AutoWakeUp = DISABLE;
