@@ -154,7 +154,7 @@ int main(void)
 	 offset.low[3] = 0;
 	 ee_writeToRam(0, sizeof(offset), &offset);
 	 ee_commit();
-	 */
+	*/
 
   /* USER CODE END 2 */
 
@@ -293,7 +293,7 @@ void sendCan(){
 	TxHeader.DLC = TER_APPS_LENGTH;
 	ter_apps_pack(TxData, &apps, sizeof(TxData)); //Empaquetamos
 	if (HAL_CAN_AddTxMessage(&hcan, &TxHeader, TxData, &TxMailbox) != HAL_OK) {
-		Error_Handler();
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, 1); //Indicate Error with light
 	}
 	//BPPS
 	TxHeader.IDE = CAN_ID_STD;
@@ -302,7 +302,7 @@ void sendCan(){
 	TxHeader.DLC = TER_BPPS_LENGTH;
 	ter_bpps_pack(TxData, &bpps, sizeof(TxData)); //Empaquetamos
 	if (HAL_CAN_AddTxMessage(&hcan, &TxHeader, TxData, &TxMailbox) != HAL_OK) {
-		Error_Handler();
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, 1); //Indicate Error with light
 	}
 	//STEER
 	//BPPS
@@ -312,7 +312,7 @@ void sendCan(){
 	TxHeader.DLC = TER_STEER_LENGTH;
 	ter_steer_pack(TxData, &steer, sizeof(TxData)); //Empaquetamos
 	if (HAL_CAN_AddTxMessage(&hcan, &TxHeader, TxData, &TxMailbox) != HAL_OK) {
-		Error_Handler();
+		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, 1); //Indicate Error with light
 	}
 
 
