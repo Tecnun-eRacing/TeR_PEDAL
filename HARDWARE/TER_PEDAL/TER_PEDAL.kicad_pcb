@@ -2099,10 +2099,10 @@
       (net 2 "GND") (pintype "passive") (tstamp 3ef9baa8-e8e9-4d85-8722-a19424532675))
     (pad "SH" thru_hole circle (at 12.215 9.4 270) (size 3 3) (drill 1.6) (layers "*.Cu" "*.Mask")
       (net 2 "GND") (pintype "passive") (tstamp 12d27654-a12f-4420-bf83-672ce20b3708))
-    (model "${KICAD7_3DMODEL_DIR}/Connector_RJ.3dshapes/RJ45_Amphenol_RJHSE538X.wrl"
-      (offset (xyz 8.5 -5 0))
+    (model "${KIPRJMOD}/Libraries/3Dmodels/432028916.stp"
+      (offset (xyz -3 -10 -5))
       (scale (xyz 1 1 1))
-      (rotate (xyz 0 0 -180))
+      (rotate (xyz 0 0 0))
     )
   )
 
@@ -4001,7 +4001,7 @@
     (property "ki_keywords" "quartz ceramic resonator oscillator")
     (path "/7632a94a-0691-4527-83e2-6d814eae7e64/91d3cab1-6e04-44a9-8a31-7285ba86eb67")
     (attr smd)
-    (fp_text reference "Y1" (at -3.9 0 -180) (layer "F.SilkS")
+    (fp_text reference "Y1" (at -3.9 0) (layer "F.SilkS")
         (effects (font (size 1 1) (thickness 0.15)))
       (tstamp 2ae9a162-5d9c-4bd4-8a77-c58f2d1abb95)
     )
@@ -4057,9 +4057,9 @@
       (net 6 "/MICRO/OSC_IN") (pinfunction "1") (pintype "passive") (tstamp a906db06-1502-4b5b-9dc8-e3d2d0c1fc33))
     (pad "2" smd rect (at 1.85 0 270) (size 2 2.4) (layers "F.Cu" "F.Paste" "F.Mask")
       (net 7 "Net-(C16-Pad1)") (pinfunction "2") (pintype "passive") (tstamp 4be0ce3d-b512-4b53-81e8-35bf0fc79ff1))
-    (model "${KICAD6_3DMODEL_DIR}/Crystal.3dshapes/Crystal_SMD_5032-2Pin_5.0x3.2mm.wrl"
+    (model "${KICAD7_3DMODEL_DIR}/Crystal.3dshapes/Crystal_SMD_3225-4Pin_3.2x2.5mm.wrl"
       (offset (xyz 0 0 0))
-      (scale (xyz 1 1 1))
+      (scale (xyz 1.8 1 1))
       (rotate (xyz 0 0 0))
     )
   )
