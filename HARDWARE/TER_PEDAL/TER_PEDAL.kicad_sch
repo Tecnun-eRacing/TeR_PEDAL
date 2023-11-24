@@ -4,6 +4,14 @@
 
   (paper "A4")
 
+  (title_block
+    (title "TeR_PEDAL")
+    (date "2023-11-24")
+    (rev "V1.1.0")
+    (company "Tecnun-eRacing")
+    (comment 1 "Ozuba")
+  )
+
   (lib_symbols
     (symbol "Device:LED" (pin_numbers hide) (pin_names (offset 1.016) hide) (in_bom yes) (on_board yes)
       (property "Reference" "D" (at 0 2.54 0)
