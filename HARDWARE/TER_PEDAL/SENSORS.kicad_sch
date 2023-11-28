@@ -599,8 +599,8 @@
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 9fcb8826-ea70-4e4e-9837-6aa4e13d5b2d)
   )
-  (text "Las resistencias a tierra están puestas para que al desconectarse el sensor la señal vaya a tierra\n y no tengamos un valor flotante que comande el coche,\n además hace funcionar el divisor resistivo 2do"
-    (at 76.835 79.375 0)
+  (text "Las resistencias a tierra están puestas para que al desconectarse el sensor la señal vaya a tierra\n y no tengamos un valor flotante que comande el coche,\n además hace funcionar el divisor resistivo 2do, \nmucho ojo con la impedancia de entrada el pull down puede deformar la señal"
+    (at 81.28 81.915 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid ad4737f4-e228-4277-ba18-b9d6f945dc70)
   )
