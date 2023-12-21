@@ -65,6 +65,7 @@ uint32_t imp_timestamp;
 struct offsets_t {
 	uint32_t low[4];
 	uint32_t high[4];
+	uint8_t written; //esta variable permite programar placas rápido ya que esta a 0 únicamente si la placa
 } offset, test;
 //Mensajes
 struct ter_apps_t apps; //Aceleradores
@@ -137,8 +138,11 @@ int main(void) {
 
 	//Carga de los offsets
 	ee_read(0, sizeof(offset), (uint8_t*) &offset); //Lee de memoria el struct
+
 	//Plausability for apps calibration value
-	/*Para Programar si se borra la flash
+	//Para Programar si se borra la flash
+
+if(!offset.written){ // En un futuro lo ideal sería ver que los valores están en rangos lógicos
 	 offset.high[0] = 4096;//Valores por defecto
 	 offset.high[1] = 4096;
 	 offset.high[2] = 4096;
@@ -147,9 +151,11 @@ int main(void) {
 	 offset.low[1] = 0;
 	 offset.low[2] = 0;
 	 offset.low[3] = 0;
-	 ee_writeToRam(0, sizeof(offset), &offset);
+
+	 offset.written = 1; // Establece un byte en memoria que indica que la placa ha sido programada
+	 ee_writeToRam(0, sizeof(offset), (uint8_t*) &offset);
 	 ee_commit();
-	 */
+}
 
 	/* USER CODE END 2 */
 
@@ -221,10 +227,12 @@ static void MX_NVIC_Init(void) {
 void readSensors() {
 
 	//Se leen y convierten las señales
-	bpps.bpps = map(adcReadings[3], offset.low[3], offset.high[3], 255, 0); //Lectura del PRESUROMETRO
-	apps.apps_2 = map(adcReadings[2], offset.low[2], offset.high[2], 255, 0); //Lectura de APPS1
-	apps.apps_1 = map(adcReadings[1], offset.low[1], offset.high[1], 255, 0); //Lectura del APPS2
+	bpps.bpps = map(adcReadings[3], offset.low[3], offset.high[3], 0, 255); //Lectura del PRESUROMETRO
+	apps.apps_2 = map(adcReadings[2], offset.low[2], offset.high[2], 0, 255); //Lectura de APPS1
+	apps.apps_1 = map(adcReadings[1], offset.low[1], offset.high[1], 0, 255); //Lectura del APPS2
 	steer.angle = map(adcReadings[0], offset.low[0], offset.high[0],MAXWHEELANGLE, -MAXWHEELANGLE); //Lectura ANGULO de giro (Poner factor)
+
+
 
 	//Check for implausability
 	if (abs(apps.apps_1 - apps.apps_2) > 255 * 10 / 100) { //T 11.8.9 Desviacion de 10 puntos en %
@@ -249,6 +257,7 @@ void command(uint8_t cmd, uint8_t *args) {
 		offset.low[2] = adcReadings[2]; //Recoje el valor actual
 		offset.low[1] = adcReadings[1];
 		ee_writeToRam(0, sizeof(offset), (uint8_t*) &offset); //Almacena
+		ee_commit();
 		break;
 
 	case 2: //Calibrate ACC 100% Pos and Store
@@ -266,12 +275,12 @@ void command(uint8_t cmd, uint8_t *args) {
 		ee_writeToRam(0, sizeof(offset), (uint8_t*) &offset); //Almacena
 		break;
 
-	case 5: //Calibrate Leftest Steer Position
+	case 5: //Calibrate Rightest Steer Position
 		offset.low[0] = adcReadings[0]; //Recoje el valor actual
 		ee_writeToRam(0, sizeof(offset), (uint8_t*) &offset); //Almacena
 		break;
 
-	case 6: //Calibrate Rightest Steer Position
+	case 6: //Calibrate Leftest Steer Position
 		offset.high[0] = adcReadings[0]; //Recoje el valor actual
 		ee_writeToRam(0, sizeof(offset), (uint8_t*) &offset); //Almacena
 		break;
@@ -281,6 +290,7 @@ void command(uint8_t cmd, uint8_t *args) {
 		break;
 
 	}
+	ee_commit(); //Almacena en la flash la calibración
 
 }
 
@@ -318,6 +328,10 @@ void sendCan() {
 
 int32_t map(int32_t x, int32_t in_min, int32_t in_max, int32_t out_min,
 		int32_t out_max) {
+	//Saturar las salidas si la entrada excede el límite de calibracion
+	if(x < in_min) return out_min;
+	if(x > in_max) return out_max;
+	//Mapear si estamos en rango seguro
 	long val = (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 	return val;
 }
