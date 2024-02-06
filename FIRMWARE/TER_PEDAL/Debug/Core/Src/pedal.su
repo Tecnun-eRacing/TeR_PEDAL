@@ -1,0 +1,3 @@
+../Core/Src/pedal.c:18:6:initPedal	8	static
+../Core/Src/pedal.c:46:6:readSensors	16	static
+../Core/Src/pedal.c:74:9:map	32	static
