@@ -17,8 +17,9 @@
  *  y envío de todos los mensajes de una placa, incluye como librerías aquellas
  *  autogeneradas mediante cantools y ofrece una interfáz de cara al micro con dos
  *  Funciones:
+ *   - initCAN -> arranca el can asignandolo a un timer para la periodicidad del envio
  *  - decodeMSG -> Decodifica las estructuras pertinentes
- *  - sendCAN -> Envía los mensajes pertinentes (Esto no va a depender del estado, ya que los inverters siempre estarán a 0)
+ *  - sendCAN -> Envía los mensajes pertinentes
  *  - command -> Función que se llama cuando se recibe el mensaje de comando para que cada placa lo interprete como corresponde
  *  A su vez están creados aqui todas las estructuras de memoria del can
  *
@@ -27,6 +28,10 @@
 #include "TeR_CAN.h"
 
 /* ---------------------------[Estructuras del CAN]-------------------------- */
+//Pointer to timer and can peripheral being used
+CAN_HandleTypeDef *can;
+TIM_HandleTypeDef *tim;
+
 //Datos transmision
 CAN_TxHeaderTypeDef TxHeader; //Header de transmisión
 uint8_t TxData[8]; //Header de recepción
@@ -35,14 +40,40 @@ uint32_t TxMailbox; //Mailbox para el CAN1
 //Datos recepcion
 CAN_RxHeaderTypeDef RxHeader;
 uint8_t RxData[8];
+
+//Variable msgIndex para la cola de envio
+uint8_t msgIndex = 0; //Hasta 255 mensajes
 /* -------------------------------------------------------------------------- */
 
 struct TeR_t TeR;
 
-void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan) { //No hay distinción de bus
-	HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &RxHeader, RxData); //Recoge el mensaje
-	decodeMsg(RxHeader.StdId, RxData); //llama a la decodificación
+uint8_t initCAN(CAN_HandleTypeDef *hcan, TIM_HandleTypeDef *htim) {
+	//Inicializacion del periferico CAN
+	can = hcan;
+	tim = htim;
+	//Arranque del periferico y la interrupcion
+	HAL_CAN_Start(can); //Activamos el can
+	HAL_CAN_ActivateNotification(can, CAN_IT_RX_FIFO0_MSG_PENDING); //Activamos notificación de mensaje pendiente a lectura
+	HAL_TIM_Base_Start_IT(tim); //Arranca el envio temporizado
+	return 1;
 }
+
+//Envío temporizado
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) { //Envio temporizado
+	if (htim == tim) { //Si es nuestro timer(Da igual si solo hay 1)
+		readSensors(); //Lee los sensores
+		sendCAN();
+	}
+}
+
+//Recepción asincrona
+void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan) { //No hay distinción de bus
+	if (hcan == can) { //Si es nuestro can (Da igual si solo hay 1)
+		HAL_CAN_GetRxMessage(can, CAN_RX_FIFO0, &RxHeader, RxData); //Recoge el mensaje
+		decodeMsg(RxHeader.StdId, RxData); //llama a la decodificación
+	}
+}
+/* -------------------------------------------------------------------------- */
 
 //Función de decodificación del CAN, si quieres que la ecu disponga de una señal hay que añadirla aquí.
 uint8_t decodeMsg(uint32_t canId, uint8_t *data) {
@@ -63,33 +94,43 @@ uint8_t decodeMsg(uint32_t canId, uint8_t *data) {
 
 //Función de envío de mensajes
 uint8_t sendCAN(void) {
-	//APPS
 	TxHeader.IDE = CAN_ID_STD;
-	TxHeader.StdId = TER_APPS_FRAME_ID;
 	TxHeader.RTR = CAN_RTR_DATA;
-	TxHeader.DLC = TER_APPS_LENGTH;
-	ter_apps_pack(TxData, &TeR.apps, sizeof(TxData)); //Empaquetamos
-	if (HAL_CAN_AddTxMessage(&hcan, &TxHeader, TxData, &TxMailbox) != HAL_OK) {
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, 1); //Indicate Error with light
+	if (HAL_CAN_GetTxMailboxesFreeLevel(can) > 0) { // Hay un slot para nuestro mensaje
+		switch (msgIndex++) {
+
+		case 0: //APPS
+			TxHeader.StdId = TER_APPS_FRAME_ID;
+			TxHeader.DLC = TER_APPS_LENGTH;
+			ter_apps_pack(TxData, &TeR.apps, sizeof(TxData)); //Empaquetamos
+			break;
+		case 1: //BPPS
+			TxHeader.StdId = TER_BPPS_FRAME_ID;
+			TxHeader.DLC = TER_BPPS_LENGTH;
+			ter_bpps_pack(TxData, &TeR.bpps, sizeof(TxData)); //Empaquetamos
+			break;
+		case 2:
+
+			break;
+		case 3: //STEER
+			TxHeader.StdId = TER_STEER_FRAME_ID;
+			TxHeader.DLC = TER_STEER_LENGTH;
+			ter_steer_pack(TxData, &TeR.steer, sizeof(TxData)); //Empaquetamos
+			break;
+
+		default: //Esto evita tener que contar mensajes
+			msgIndex = 0; //cualquier otro valor retorna al ultimo mensaje
+			return 1; //Evita que se envíe un mensaje doble terminando la funcion
+			break;
+		}
+		if (HAL_CAN_AddTxMessage(can, &TxHeader, TxData, &TxMailbox)
+				!= HAL_OK) {
+			HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, 1); //Indicate Error with light
+		}
 	}
-	//BPPS
-	TxHeader.IDE = CAN_ID_STD;
-	TxHeader.StdId = TER_BPPS_FRAME_ID;
-	TxHeader.RTR = CAN_RTR_DATA;
-	TxHeader.DLC = TER_BPPS_LENGTH;
-	ter_bpps_pack(TxData, &TeR.bpps, sizeof(TxData)); //Empaquetamos
-	if (HAL_CAN_AddTxMessage(&hcan, &TxHeader, TxData, &TxMailbox) != HAL_OK) {
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, 1); //Indicate Error with light
-	}
-	//STEER
-	TxHeader.IDE = CAN_ID_STD;
-	TxHeader.StdId = TER_STEER_FRAME_ID;
-	TxHeader.RTR = CAN_RTR_DATA;
-	TxHeader.DLC = TER_STEER_LENGTH;
-	ter_steer_pack(TxData, &TeR.steer, sizeof(TxData)); //Empaquetamos
-	if (HAL_CAN_AddTxMessage(&hcan, &TxHeader, TxData, &TxMailbox) != HAL_OK) {
-		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, 1); //Indicate Error with light
-	}
+	return 1;
+
+
 	return 1;
 }
 

@@ -6,6 +6,9 @@
  */
 #include "pedal.h"
 
+
+//ADC usado
+ADC_HandleTypeDef *adc;
 //Implausabilities
 uint32_t imp_timestamp;
 
@@ -15,7 +18,8 @@ struct offsets_t offset;
 //Estructura de lectura para el ADC
 uint32_t adcReadings[4]; //32*3, el adc saca 12 bits alineados a la derecha
 
-void initPedal() {
+void initPedal(ADC_HandleTypeDef* hadc) {
+	adc = hadc;
 	ee_init(); //Inicializamos la flash (EEPROM virtual)
 
 	//Carga de los offsets
@@ -39,7 +43,7 @@ void initPedal() {
 
 	//Inicializamos el DMA para que copie nuestros datos al buffer de lecturas
 	//Hemos desactivado las interrupciones del mismo en el NVIC para que no obstruyan, solo nos interesa que anden disponibles
-	HAL_ADC_Start_DMA(&hadc1, adcReadings, 4); // Arrancamos el ADC en modo DMA
+	HAL_ADC_Start_DMA(adc, adcReadings, 4); // Arrancamos el ADC en modo DMA
 
 }
 

@@ -26,7 +26,7 @@ extern struct offsets_t offset;
 extern uint32_t adcReadings[4];
 
 
-void initPedal(void); //Carga los offsets y lanza la interrupcion del adc
+void initPedal(ADC_HandleTypeDef* hadc); //Carga los offsets y lanza la interrupcion del adc
 void readSensors();
 int32_t map(int32_t x, int32_t in_min, int32_t in_max, int32_t out_min,
 		int32_t out_max); //Mapea un intervalo sobre otro (Cogida de Arduino)
