@@ -1,25 +1,25 @@
 ################################################################################
 # Automatically-generated file. Do not edit!
-# Toolchain: GNU Tools for STM32 (11.3.rel1)
+# Toolchain: GNU Tools for STM32 (12.3.rel1)
 ################################################################################
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../DBC/charger.c \
 ../DBC/hvbms.c \
 ../DBC/inverter.c \
-../DBC/te_r23.c \
 ../DBC/ter.c 
 
 OBJS += \
+./DBC/charger.o \
 ./DBC/hvbms.o \
 ./DBC/inverter.o \
-./DBC/te_r23.o \
 ./DBC/ter.o 
 
 C_DEPS += \
+./DBC/charger.d \
 ./DBC/hvbms.d \
 ./DBC/inverter.d \
-./DBC/te_r23.d \
 ./DBC/ter.d 
 
 
@@ -30,7 +30,7 @@ DBC/%.o DBC/%.su DBC/%.cyclo: ../DBC/%.c DBC/subdir.mk
 clean: clean-DBC
 
 clean-DBC:
-	-$(RM) ./DBC/hvbms.cyclo ./DBC/hvbms.d ./DBC/hvbms.o ./DBC/hvbms.su ./DBC/inverter.cyclo ./DBC/inverter.d ./DBC/inverter.o ./DBC/inverter.su ./DBC/te_r23.cyclo ./DBC/te_r23.d ./DBC/te_r23.o ./DBC/te_r23.su ./DBC/ter.cyclo ./DBC/ter.d ./DBC/ter.o ./DBC/ter.su
+	-$(RM) ./DBC/charger.cyclo ./DBC/charger.d ./DBC/charger.o ./DBC/charger.su ./DBC/hvbms.cyclo ./DBC/hvbms.d ./DBC/hvbms.o ./DBC/hvbms.su ./DBC/inverter.cyclo ./DBC/inverter.d ./DBC/inverter.o ./DBC/inverter.su ./DBC/ter.cyclo ./DBC/ter.d ./DBC/ter.o ./DBC/ter.su
 
 .PHONY: clean-DBC
 

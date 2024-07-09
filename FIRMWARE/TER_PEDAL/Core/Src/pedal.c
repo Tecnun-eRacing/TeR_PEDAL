@@ -59,7 +59,7 @@ void readSensors() {
 	MAXWHEELANGLE, -MAXWHEELANGLE); //Lectura ANGULO de giro (Poner factor)
 
 	//Computa la media
-	TeR.apps.apps_av = (TeR.apps.apps_2 + TeR.apps.apps_1) / 2;
+	TeR.apps.apps_av = TeR.apps.imp_flag ? 0 :(TeR.apps.apps_2 + TeR.apps.apps_1) / 2;
 
 	//Check for implausability
 	if (abs(TeR.apps.apps_1 - TeR.apps.apps_2) > 255 * 10 / 100) { //T 11.8.9 Desviacion de 10 puntos en %

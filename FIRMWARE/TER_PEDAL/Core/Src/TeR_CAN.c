@@ -80,7 +80,7 @@ uint8_t decodeMsg(uint32_t canId, uint8_t *data) {
 
 	switch (canId) {
 	//Attend the command
-	case TER_CMD_FRAME_ID:
+	case TER_COMMAND_FRAME_ID:
 		command(data[0], &data[1]); //Llama a la interpretación del comando
 		break;
 

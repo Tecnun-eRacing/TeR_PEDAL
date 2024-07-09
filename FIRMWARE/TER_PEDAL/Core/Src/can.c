@@ -59,7 +59,7 @@ void MX_CAN_Init(void)
 	canfilterconfig.FilterActivation = CAN_FILTER_ENABLE;
 	canfilterconfig.FilterBank = 0; // which filter bank to use from the assigned ones
 	canfilterconfig.FilterFIFOAssignment = CAN_FILTER_FIFO0;
-	canfilterconfig.FilterIdHigh = TER_CMD_FRAME_ID << 5;
+	canfilterconfig.FilterIdHigh = TER_COMMAND_FRAME_ID << 5;
 	canfilterconfig.FilterIdLow = 0;
 	canfilterconfig.FilterMaskIdHigh = 0;
 	canfilterconfig.FilterMaskIdLow = 0;
