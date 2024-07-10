@@ -81,7 +81,7 @@ uint8_t decodeMsg(uint32_t canId, uint8_t *data) {
 	switch (canId) {
 	//Attend the command
 	case TER_COMMAND_FRAME_ID:
-		command(data[0], &data[1]); //Llama a la interpretación del comando
+		command(data[0]); //Llama a la interpretación del comando
 		break;
 
 	default:
@@ -109,10 +109,8 @@ uint8_t sendCAN(void) {
 			TxHeader.DLC = TER_BPPS_LENGTH;
 			ter_bpps_pack(TxData, &TeR.bpps, sizeof(TxData)); //Empaquetamos
 			break;
-		case 2:
 
-			break;
-		case 3: //STEER
+		case 2: //STEER
 			TxHeader.StdId = TER_STEER_FRAME_ID;
 			TxHeader.DLC = TER_STEER_LENGTH;
 			ter_steer_pack(TxData, &TeR.steer, sizeof(TxData)); //Empaquetamos
@@ -129,48 +127,49 @@ uint8_t sendCAN(void) {
 		}
 	}
 	return 1;
-
-
-	return 1;
 }
 
 //Implementa aqui los comandos que se han de ejecutar
-uint8_t command(uint8_t cmd, uint8_t *args) {
+uint8_t command(uint8_t cmd) {
 	switch (cmd) {
-	case 1: //Calibrate ACC 0% Pos and Store
+	case TER_COMMAND_CMD_CALIBRATE_APPS_MIN_CHOICE: //Calibrate ACC 0% Pos and Store
 		offset.low[2] = adcReadings[2]; //Recoje el valor actual
 		offset.low[1] = adcReadings[1];
 		ee_writeToRam(0, sizeof(offset), (uint8_t*) &offset); //Almacena
 		ee_commit();
 		break;
 
-	case 2: //Calibrate ACC 100% Pos and Store
+	case TER_COMMAND_CMD_CALIBRATE_APPS_MAX_CHOICE: //Calibrate ACC 100% Pos and Store
 		offset.high[2] = adcReadings[2]; //Recoje el valor actual
 		offset.high[1] = adcReadings[1];
 		ee_writeToRam(0, sizeof(offset), (uint8_t*) &offset); //Almacena
 		break;
-	case 3: //Calibrate BPPS 0% Pos
+	case TER_COMMAND_CMD_CALIBRATE_BPPS_MIN_CHOICE: //Calibrate BPPS 0% Pos
 		offset.low[3] = adcReadings[3]; //Recoje el valor actual
 		ee_writeToRam(0, sizeof(offset), (uint8_t*) &offset); //Almacena
 		break;
 
-	case 4: //Calibrate BPPS 100% Pos
+	case TER_COMMAND_CMD_CALIBRATE_BPPS_MAX_CHOICE: //Calibrate BPPS 100% Pos
 		offset.high[3] = adcReadings[3]; //Recoje el valor actual
 		ee_writeToRam(0, sizeof(offset), (uint8_t*) &offset); //Almacena
 		break;
 
-	case 5: //Calibrate Rightest Steer Position
+	case TER_COMMAND_CMD_CALIBRATE_STEER_RIGHTEST_CHOICE: //Calibrate Rightest Steer Position
 		offset.low[0] = adcReadings[0]; //Recoje el valor actual
 		ee_writeToRam(0, sizeof(offset), (uint8_t*) &offset); //Almacena
 		break;
 
-	case 6: //Calibrate Leftest Steer Position
+	case TER_COMMAND_CMD_CALIBRATE_STEER_LEFTEST_CHOICE: //Calibrate Leftest Steer Position
 		offset.high[0] = adcReadings[0]; //Recoje el valor actual
 		ee_writeToRam(0, sizeof(offset), (uint8_t*) &offset); //Almacena
 		break;
 
-	case 7: //Reset de la implausability
+	case TER_COMMAND_CMD_RESET_APPS_IMPLAUSABILITY_CHOICE: //Reset de la implausability
 		TeR.apps.imp_flag = 0;
+		break;
+
+	default:
+		return 0;
 		break;
 
 	}

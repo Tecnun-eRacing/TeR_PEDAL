@@ -51,6 +51,6 @@ extern struct TeR_t TeR; //Expone los datos del TeR a otros archivos
 uint8_t initCAN(CAN_HandleTypeDef *hcan, TIM_HandleTypeDef *htim);//Initializes CAN
 uint8_t decodeMsg(uint32_t canId, uint8_t *data); //Decodes message according to DBC
 uint8_t sendCAN(void);
-uint8_t command(uint8_t cmd, uint8_t *args); //
+uint8_t command(uint8_t cmd); //
 
 #endif /* INC_TER_CAN_H_ */
