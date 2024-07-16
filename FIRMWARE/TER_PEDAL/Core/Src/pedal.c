@@ -10,11 +10,14 @@
 //ADC usado
 ADC_HandleTypeDef *adc;
 //Implausabilities
-uint32_t imp_timestamp;
+persist_t DELTA_IMP;
+persist_t RANGE_IMP;
+uint8_t impRange; //1 if signals are out of range
+uint8_t impDelta; //1 if APPS difference exceeds 10% of total range
 
 //Offsets de los sensores {Steer,APPS1,APPS2,Brake}
 struct offsets_t offset;
-
+#define MARGIN 80 //Points of adc
 //Estructura de lectura para el ADC
 uint32_t adcReadings[4]; //32*3, el adc saca 12 bits alineados a la derecha
 
@@ -50,7 +53,7 @@ void initPedal(ADC_HandleTypeDef* hadc) {
 void readSensors() {
 
 	//Se leen y convierten las señales
-	TeR.bpps.bpps = map(adcReadings[3], offset.low[3], offset.high[3], 0, 255); //Lectura del PRESUROMETRO
+	TeR.bpps.bpps = map(adcReadings[3], offset.low[3], offset.high[3], 0, 255); //todo :Lectura del PRESUROMETRO mapeo del rango de (0.5-4.5v) de 0 a 50bar como indica el datasheet
 	TeR.apps.apps_2 = map(adcReadings[2], offset.low[2], offset.high[2], 0,
 			255); //Lectura de APPS1
 	TeR.apps.apps_1 = map(adcReadings[1], offset.low[1], offset.high[1], 0,
@@ -58,32 +61,17 @@ void readSensors() {
 	TeR.steer.angle = map(adcReadings[0], offset.low[0], offset.high[0],
 	MAXWHEELANGLE, -MAXWHEELANGLE); //Lectura ANGULO de giro (Poner factor)
 
+
+
+	//Check for implausability T 11.8.9 Desviacion de 10 puntos en %
+	impDelta = !checkPersistance(&RANGE_IMP,(abs(TeR.apps.apps_1 - TeR.apps.apps_2) < (255 * 0.1)),100);//Comprueba que la diferencia entre aceleradores es menor que el 10% activamente, solo falla si esta se da por más de 100ms
+	//Check if all signals are in range
+	impRange = !checkPersistance(&DIFF_IMP,((adcReadings[1] > (offset.low[1] -MARGIN)) || (adcReadings[2] > (offset.low[2]-MARGIN)) || (adcReadings[3] > (offset.low[3]-MARGIN))),500); //Implausible range 500 millis
+	TeR.apps.imp_flag = (impDelta || impRange); //Determine existing implausability
 	//Computa la media
 	TeR.apps.apps_av = TeR.apps.imp_flag ? 0 :(TeR.apps.apps_2 + TeR.apps.apps_1) / 2;
 
-	//Check for implausability
-	if (abs(TeR.apps.apps_1 - TeR.apps.apps_2) > 255 * 10 / 100) { //T 11.8.9 Desviacion de 10 puntos en %
-		if (imp_timestamp == 0) {	 //Si no había timestamp activalo
-			imp_timestamp = HAL_GetTick();
-		} else if (HAL_GetTick() - imp_timestamp > 100) {//Si el tiempo es mayor que 100 millis
-			TeR.apps.imp_flag = 1; //Activa el implausability y dejalo latched
-			imp_timestamp = 0; //Resetea el counter
-		}
-	} else { //Si vuelve a estar bien desactiva el contador
-		imp_timestamp = 0;
-	}
-	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, TeR.apps.imp_flag); //Actualizamos el estado del led
-}
 
-int32_t map(int32_t x, int32_t in_min, int32_t in_max, int32_t out_min,
-		int32_t out_max) {
-	//Saturar las salidas si la entrada excede el límite de calibracion
-	if (x < in_min)
-		return out_min;
-	if (x > in_max)
-		return out_max;
-	//Mapear si estamos en rango seguro
-	long val = (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
-	return val;
+	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, TeR.apps.imp_flag); //Actualizamos el estado del led
 }
 
