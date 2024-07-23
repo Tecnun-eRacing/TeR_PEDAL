@@ -5,6 +5,7 @@
  *      Author: Ozuba
  */
 #include "TeR_UTILS.h"
+#include "stdbool.h"
 
 //Comprueba que un error sucede durante más de tMax (La función prefiere mantener el estado OK)
 uint8_t checkPersistance(persist_t *instance, uint8_t ok, uint32_t tMax) {

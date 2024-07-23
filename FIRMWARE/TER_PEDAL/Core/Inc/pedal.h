@@ -16,10 +16,12 @@
 #include "TeR_CAN.h"
 
 #define MAXWHEELANGLE 30 //Angulo limite de la rueda
+#define MARGIN 100 //Points of adc
+
 
 struct offsets_t {
-	uint32_t low[4];
-	uint32_t high[4];
+	uint32_t low[3];
+	uint32_t high[3];
 	uint8_t written; //esta variable permite programar placas rápido ya que esta a 0 únicamente si la placa
 };
 //Para que los comandos puedan cambiarla (Abstraer a futuro)

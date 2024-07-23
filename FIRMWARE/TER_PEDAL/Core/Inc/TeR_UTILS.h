@@ -10,6 +10,11 @@
 
 #include "stm32f1xx_hal.h"
 
+//Voltage to ADC value
+#define VOLT2ADC(V) ((uint32_t)(((V) / 3.3) * 4095))
+
+
+
 // Boolean Persistance checker (Una función que comprueba que un error se da durante un cierto tiempo)
 
 typedef uint32_t persist_t; // Almacena el timestamp de el flanco de subida

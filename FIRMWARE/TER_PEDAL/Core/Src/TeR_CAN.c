@@ -144,15 +144,6 @@ uint8_t command(uint8_t cmd) {
 		offset.high[1] = adcReadings[1];
 		ee_writeToRam(0, sizeof(offset), (uint8_t*) &offset); //Almacena
 		break;
-	case TER_COMMAND_CMD_CALIBRATE_BPPS_MIN_CHOICE: //Calibrate BPPS 0% Pos
-		offset.low[3] = adcReadings[3]; //Recoje el valor actual
-		ee_writeToRam(0, sizeof(offset), (uint8_t*) &offset); //Almacena
-		break;
-
-	case TER_COMMAND_CMD_CALIBRATE_BPPS_MAX_CHOICE: //Calibrate BPPS 100% Pos
-		offset.high[3] = adcReadings[3]; //Recoje el valor actual
-		ee_writeToRam(0, sizeof(offset), (uint8_t*) &offset); //Almacena
-		break;
 
 	case TER_COMMAND_CMD_CALIBRATE_STEER_RIGHTEST_CHOICE: //Calibrate Rightest Steer Position
 		offset.low[0] = adcReadings[0]; //Recoje el valor actual
