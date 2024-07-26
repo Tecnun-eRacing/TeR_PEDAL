@@ -11,7 +11,7 @@
 #include "stm32f1xx_hal.h"
 
 //Voltage to ADC value
-#define VOLT2ADC(V) ((((V) / 3.3) * 4095.0))
+#define VOLT2ADC(V,ADCREF) ((V) * 4095.0)/ (ADCREF)
 
 
 
