@@ -18,6 +18,9 @@
 #define MAXWHEELANGLE 30 //Angulo limite de la rueda
 #define MARGIN 100 //Points of adc
 
+//Brake min and max calculated with a 5v supply
+#define MINBRAKE VOLT2ADC(0.5,5.0)
+#define MAXBRAKE VOLT2ADC(4.5,5.0)
 
 struct offsets_t {
 	uint32_t low[3];

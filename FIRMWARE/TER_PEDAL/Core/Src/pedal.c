@@ -50,7 +50,7 @@ void initPedal(ADC_HandleTypeDef* hadc) {
 void readSensors() {
 
 	//Se leen y convierten las señales
-	TeR.bpps.bpps = map(adcReadings[3], VOLT2ADC(0.5,5.0), VOLT2ADC(4.5,5.0), 0, 50); //Estamos con VREF de 5 porque hay un divisor
+	TeR.bpps.bpps = map(adcReadings[3], MINBRAKE, MAXBRAKE, 0, 50); //Estamos con VREF de 5 porque hay un divisor
 	TeR.apps.apps_2 = map(adcReadings[2], offset.low[2], offset.high[2], 0,
 			255); //Lectura de APPS1
 	TeR.apps.apps_1 = map(adcReadings[1], offset.low[1], offset.high[1], 0,
@@ -63,7 +63,7 @@ void readSensors() {
 	//Check for implausability T 11.8.9 Desviacion de 10 puntos en %
 	impDelta = !checkPersistance(&RANGE_IMP,(abs(TeR.apps.apps_1 - TeR.apps.apps_2) < (255 * 0.1)),100);//Comprueba que la diferencia entre aceleradores es menor que el 10% activamente, solo falla si esta se da por más de 100ms
 	//Check if all signals are in range
-	impRange = !checkPersistance(&DELTA_IMP,((adcReadings[1] > (offset.low[1] -MARGIN)) && (adcReadings[2] > (offset.low[2]-MARGIN)) && (adcReadings[3] > (offset.low[3]-MARGIN)) && (adcReadings[1] < (offset.high[1] + MARGIN)) && (adcReadings[2] < (offset.high[2] + MARGIN)) && (adcReadings[3] < (offset.high[3] + MARGIN))),500); //Implausible range 500 millis
+	impRange = !checkPersistance(&DELTA_IMP,((adcReadings[1] > (offset.low[1] -MARGIN)) && (adcReadings[2] > (offset.low[2]-MARGIN)) && (adcReadings[3] > (MINBRAKE-MARGIN)) && (adcReadings[1] < (offset.high[1] + MARGIN)) && (adcReadings[2] < (offset.high[2] + MARGIN)) && (adcReadings[3] < (MAXBRAKE + MARGIN))),500); //Implausible range 500 millis
 	TeR.apps.imp_flag = (impDelta || impRange); //Determine existing implausability
 	//Computa la media
 	TeR.apps.apps_av = TeR.apps.imp_flag ? 0 :(TeR.apps.apps_2 + TeR.apps.apps_1) / 2;
