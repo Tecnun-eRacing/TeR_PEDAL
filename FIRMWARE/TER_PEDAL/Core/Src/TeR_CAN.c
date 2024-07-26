@@ -155,10 +155,6 @@ uint8_t command(uint8_t cmd) {
 		ee_writeToRam(0, sizeof(offset), (uint8_t*) &offset); //Almacena
 		break;
 
-	case TER_COMMAND_CMD_RESET_APPS_IMPLAUSABILITY_CHOICE: //Reset de la implausability
-		TeR.apps.imp_flag = 0;
-		break;
-
 	default:
 		return 0;
 		break;
