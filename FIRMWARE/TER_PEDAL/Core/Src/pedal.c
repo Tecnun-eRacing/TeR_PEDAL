@@ -50,13 +50,13 @@ void initPedal(ADC_HandleTypeDef* hadc) {
 void readSensors() {
 
 	//Se leen y convierten las señales
-	TeR.bpps.bpps = map(adcReadings[3], VOLT2ADC(0.5), VOLT2ADC(4.5), 0, 50); //todo :Lectura del PRESUROMETRO mapeo del rango de (0.5-4.5v) de 0 a 50bar como indica el datasheet
+	TeR.bpps.bpps = map(adcReadings[3], 620, 5585, 0, 50); //todo :Lectura del PRESUROMETRO mapeo del rango de (0.5-4.5v) de 0 a 50bar como indica el datasheet
 	TeR.apps.apps_2 = map(adcReadings[2], offset.low[2], offset.high[2], 0,
 			255); //Lectura de APPS1
 	TeR.apps.apps_1 = map(adcReadings[1], offset.low[1], offset.high[1], 0,
 			255); //Lectura del APPS2
 	TeR.steer.angle = map(adcReadings[0], offset.low[0], offset.high[0],
-	MAXWHEELANGLE, -MAXWHEELANGLE); //Lectura ANGULO de giro (Poner factor)
+	-MAXWHEELANGLE, MAXWHEELANGLE); //Lectura ANGULO de giro (Poner factor)
 
 
 
