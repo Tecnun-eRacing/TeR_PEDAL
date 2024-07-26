@@ -50,7 +50,7 @@ void initPedal(ADC_HandleTypeDef* hadc) {
 void readSensors() {
 
 	//Se leen y convierten las señales
-	TeR.bpps.bpps = map(adcReadings[3], VOLT2ADC(0.5,5.0), VOLT2ADC(4.5,5.0), 0, 50); //Estamos con VREF de 5 porque hay un divisor
+	TeR.bpps.bpps = map(adcReadings[3], 409, 3685, 0, 50); //Estamos con VREF de 5 porque hay un divisor
 	TeR.apps.apps_2 = map(adcReadings[2], offset.low[2], offset.high[2], 0,
 			255); //Lectura de APPS1
 	TeR.apps.apps_1 = map(adcReadings[1], offset.low[1], offset.high[1], 0,
