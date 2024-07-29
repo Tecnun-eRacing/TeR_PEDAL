@@ -28,7 +28,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h \
  ../Core/Inc/adc.h ../Core/Inc/main.h ../Core/Inc/can.h ../Core/Inc/dma.h \
  ../Core/Inc/tim.h ../Core/Inc/gpio.h ../Core/Inc/TeR_CAN.h \
- /home/ozuba/Github/TeR_PEDAL/FIRMWARE/TER_PEDAL/DBC/ter.h \
+ /home/eracing/Documentos/GitHub/TeR_PEDAL/FIRMWARE/TER_PEDAL/DBC/ter.h \
  ../Core/Inc/pedal.h ../Core/Inc/ee.h ../Core/Inc/adc.h \
  ../Core/Inc/TeR_UTILS.h ../Core/Inc/TeR_CAN.h ../Core/Inc/can.h \
  ../Core/Inc/pedal.h
@@ -67,7 +67,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Core/Inc/tim.h:
 ../Core/Inc/gpio.h:
 ../Core/Inc/TeR_CAN.h:
-/home/ozuba/Github/TeR_PEDAL/FIRMWARE/TER_PEDAL/DBC/ter.h:
+/home/eracing/Documentos/GitHub/TeR_PEDAL/FIRMWARE/TER_PEDAL/DBC/ter.h:
 ../Core/Inc/pedal.h:
 ../Core/Inc/ee.h:
 ../Core/Inc/adc.h:

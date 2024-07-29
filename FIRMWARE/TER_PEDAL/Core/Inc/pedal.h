@@ -29,7 +29,7 @@ struct offsets_t {
 };
 //Para que los comandos puedan cambiarla (Abstraer a futuro)
 extern struct offsets_t offset;
-extern uint32_t adcReadings[4];
+extern int32_t adcReadings[4];
 
 
 void initPedal(ADC_HandleTypeDef* hadc); //Carga los offsets y lanza la interrupcion del adc

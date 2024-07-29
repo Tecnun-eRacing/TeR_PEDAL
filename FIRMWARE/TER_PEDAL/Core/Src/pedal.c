@@ -43,7 +43,7 @@ void initPedal(ADC_HandleTypeDef* hadc) {
 
 	//Inicializamos el DMA para que copie nuestros datos al buffer de lecturas
 	//Hemos desactivado las interrupciones del mismo en el NVIC para que no obstruyan, solo nos interesa que anden disponibles
-	HAL_ADC_Start_DMA(adc, adcReadings, 4); // Arrancamos el ADC en modo DMA
+	HAL_ADC_Start_DMA(adc, (uint32_t*)adcReadings, 4); // Arrancamos el ADC en modo DMA
 
 }
 
