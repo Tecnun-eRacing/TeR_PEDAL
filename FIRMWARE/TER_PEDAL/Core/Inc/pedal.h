@@ -16,7 +16,7 @@
 #include "TeR_CAN.h"
 
 #define MAXWHEELANGLE 30 //Angulo limite de la rueda
-#define MARGIN 100 //Points of adc
+#define MARGIN 200 //Points of adc
 
 //Brake min and max calculated with a 5v supply
 #define MINBRAKE VOLT2ADC(0.5,5.0)
