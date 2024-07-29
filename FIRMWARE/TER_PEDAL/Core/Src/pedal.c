@@ -19,7 +19,7 @@ uint8_t impDelta; //1 if APPS difference exceeds 10% of total range
 struct offsets_t offset;
 
 //Estructura de lectura para el ADC
-uint32_t adcReadings[4]; //32*3, el adc saca 12 bits alineados a la derecha
+int32_t adcReadings[4]; //32*3, el adc saca 12 bits alineados a la derecha usamos enteros con signo pa que no nos la lien las restas al comprobar offsets
 
 void initPedal(ADC_HandleTypeDef* hadc) {
 	adc = hadc;
