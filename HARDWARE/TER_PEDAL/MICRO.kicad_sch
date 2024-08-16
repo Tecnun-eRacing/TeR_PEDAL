@@ -4,6 +4,13 @@
 	(generator_version "8.0")
 	(uuid "a29f38ea-5ab1-4539-aa28-de1419b38643")
 	(paper "A4")
+	(title_block
+		(title "TeR_PEDAL")
+		(date "2023-11-24")
+		(rev "V1.1.0")
+		(company "Tecnun-eRacing")
+		(comment 1 "Ozuba")
+	)
 	(lib_symbols
 		(symbol "Connector:Conn_ARM_JTAG_SWD_10"
 			(pin_names
@@ -1274,191 +1281,6 @@
 						)
 					)
 					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-		)
-		(symbol "Jumper:Jumper_3_Bridged12"
-			(pin_names
-				(offset 0) hide)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "JP"
-				(at -2.54 -2.54 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "Jumper_3_Bridged12"
-				(at 0 2.794 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" ""
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "~"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Jumper, 3-pole, pins 1+2 closed/bridged"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "Jumper SPDT"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "Jumper* TestPoint*3Pads* TestPoint*Bridge*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "Jumper_3_Bridged12_0_0"
-				(circle
-					(center -3.302 0)
-					(radius 0.508)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(circle
-					(center 0 0)
-					(radius 0.508)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(circle
-					(center 3.302 0)
-					(radius 0.508)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "Jumper_3_Bridged12_0_1"
-				(arc
-					(start -0.254 0.508)
-					(mid -1.651 0.9912)
-					(end -3.048 0.508)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 -1.27) (xy 0 -0.508)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "Jumper_3_Bridged12_1_1"
-				(pin passive line
-					(at -6.35 0 0)
-					(length 2.54)
-					(name "A"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -3.81 90)
-					(length 2.54)
-					(name "C"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 6.35 0 180)
-					(length 2.54)
-					(name "B"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -3104,6 +2926,12 @@
 		(uuid "bbeedb23-dd7c-4cd2-9914-9ba13f4ef7b9")
 	)
 	(junction
+		(at 24.13 111.76)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "bddbfbc0-a382-4ff5-80e1-766b2032e56f")
+	)
+	(junction
 		(at 38.1 25.4)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3294,6 +3122,16 @@
 			(type default)
 		)
 		(uuid "0aa82d9b-2a07-4d54-9855-247006fb230c")
+	)
+	(wire
+		(pts
+			(xy 35.56 111.76) (xy 34.29 111.76)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0d415246-2024-4bdf-9f46-3fceca45bd87")
 	)
 	(wire
 		(pts
@@ -3517,7 +3355,7 @@
 	)
 	(wire
 		(pts
-			(xy 31.75 110.49) (xy 31.75 111.76)
+			(xy 35.56 110.49) (xy 35.56 111.76)
 		)
 		(stroke
 			(width 0)
@@ -3807,6 +3645,16 @@
 	)
 	(wire
 		(pts
+			(xy 24.13 111.76) (xy 24.13 125.73)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9511463a-a0df-42d3-802d-9fd9b6601d2b")
+	)
+	(wire
+		(pts
 			(xy 256.54 31.75) (xy 256.54 33.02)
 		)
 		(stroke
@@ -4027,13 +3875,13 @@
 	)
 	(wire
 		(pts
-			(xy 31.75 111.76) (xy 30.48 111.76)
+			(xy 24.13 111.76) (xy 22.86 111.76)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "d4af4c6d-9867-4670-959e-e537ddf39088")
+		(uuid "d33a8710-2dd9-4771-a68c-d511d6e23ca6")
 	)
 	(wire
 		(pts
@@ -4097,16 +3945,6 @@
 	)
 	(wire
 		(pts
-			(xy 24.13 115.57) (xy 24.13 116.84)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f2f8261e-74e9-4bc0-a774-47f9ea20ffea")
-	)
-	(wire
-		(pts
 			(xy 140.97 124.46) (xy 140.97 125.73)
 		)
 		(stroke
@@ -4124,16 +3962,6 @@
 			(type default)
 		)
 		(uuid "f4a34c5e-ced9-42be-8fec-521269700a79")
-	)
-	(wire
-		(pts
-			(xy 24.13 121.92) (xy 24.13 125.73)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "f5eadfb7-768d-4a6b-9dc1-d52f0a71167f")
 	)
 	(wire
 		(pts
@@ -4510,7 +4338,7 @@
 		)
 		(uuid "7456278f-91d1-4454-a440-59df58a6c53a")
 	)
-	(hierarchical_label "DBG_LED"
+	(hierarchical_label "SYS"
 		(shape input)
 		(at 161.29 60.96 0)
 		(fields_autoplaced yes)
@@ -5353,77 +5181,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Jumper:Jumper_3_Bridged12")
-		(at 24.13 111.76 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "6b3261b4-a3ac-4afd-a859-a0e544e03182")
-		(property "Reference" "JP1"
-			(at 24.13 106.68 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "BOOT0"
-			(at 24.13 109.22 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Connector_PinHeader_2.00mm:PinHeader_1x03_P2.00mm_Vertical"
-			(at 24.13 111.76 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 24.13 111.76 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 24.13 111.76 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "e6888ef3-298a-4b51-9837-fdd371ad9edc")
-		)
-		(pin "2"
-			(uuid "2262fed7-f455-42cc-a39c-4d8714af9016")
-		)
-		(pin "3"
-			(uuid "1522ea70-9764-4d5c-8b92-6caad12d7c01")
-		)
-		(instances
-			(project "TER_PEDAL"
-				(path "/73ede3a3-6344-40fe-9207-10ff50d388ba/7632a94a-0691-4527-83e2-6d814eae7e64"
-					(reference "JP1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "MCU_ST_STM32F1:STM32F103C8Tx")
 		(at 140.97 86.36 0)
 		(unit 1)
@@ -5841,7 +5598,7 @@
 	)
 	(symbol
 		(lib_id "power:+3.3V")
-		(at 31.75 110.49 0)
+		(at 35.56 110.49 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -5850,7 +5607,7 @@
 		(fields_autoplaced yes)
 		(uuid "8b477acc-79ec-431b-b38e-39ef82bdffd4")
 		(property "Reference" "#PWR024"
-			(at 31.75 114.3 0)
+			(at 35.56 114.3 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5859,7 +5616,7 @@
 			)
 		)
 		(property "Value" "+3.3V"
-			(at 31.75 106.68 0)
+			(at 35.56 106.68 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5867,7 +5624,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 31.75 110.49 0)
+			(at 35.56 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5876,7 +5633,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 31.75 110.49 0)
+			(at 35.56 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5885,7 +5642,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 31.75 110.49 0)
+			(at 35.56 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6243,6 +6000,74 @@
 			(project "TER_PEDAL"
 				(path "/73ede3a3-6344-40fe-9207-10ff50d388ba/7632a94a-0691-4527-83e2-6d814eae7e64"
 					(reference "C2")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R_Small")
+		(at 20.32 111.76 270)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "a1364c35-d4ec-4dab-9e5d-01e5001fbdf7")
+		(property "Reference" "R4"
+			(at 20.32 106.68 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "10k"
+			(at 20.32 109.22 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
+			(at 20.32 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 20.32 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 20.32 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "d3da2b10-1dde-4abd-a746-7e77f7a2cf3b")
+		)
+		(pin "2"
+			(uuid "bd17cc16-af98-4bac-a08f-9b1ebac35a66")
+		)
+		(instances
+			(project "TER_PEDAL"
+				(path "/73ede3a3-6344-40fe-9207-10ff50d388ba/7632a94a-0691-4527-83e2-6d814eae7e64"
+					(reference "R4")
 					(unit 1)
 				)
 			)
@@ -6615,7 +6440,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" "Button_Switch_SMD:SW_Tactile_SPST_NO_Straight_CK_PTS636Sx25SMTRLFS"
+		(property "Footprint" "Button_Switch_SMD:SW_SPST_PTS810"
 			(at 22.86 85.09 0)
 			(effects
 				(font
@@ -6652,76 +6477,6 @@
 			(project "TER_PEDAL"
 				(path "/73ede3a3-6344-40fe-9207-10ff50d388ba/7632a94a-0691-4527-83e2-6d814eae7e64"
 					(reference "SW1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:R_Small")
-		(at 24.13 119.38 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "c06c69fb-0f04-4386-9419-8eb3b129723a")
-		(property "Reference" "R4"
-			(at 26.67 118.745 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "10k"
-			(at 26.67 121.285 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
-			(at 24.13 119.38 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 24.13 119.38 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" ""
-			(at 24.13 119.38 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "63d5dfb1-9253-41ac-a847-86375f93274e")
-		)
-		(pin "2"
-			(uuid "fccac1ec-5ebf-4119-9bec-7a1c12ad737d")
-		)
-		(instances
-			(project "TER_PEDAL"
-				(path "/73ede3a3-6344-40fe-9207-10ff50d388ba/7632a94a-0691-4527-83e2-6d814eae7e64"
-					(reference "R4")
 					(unit 1)
 				)
 			)
@@ -7058,6 +6813,74 @@
 			(project "TER_PEDAL"
 				(path "/73ede3a3-6344-40fe-9207-10ff50d388ba/7632a94a-0691-4527-83e2-6d814eae7e64"
 					(reference "#PWR025")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Switch:SW_SPST")
+		(at 29.21 111.76 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "d0d69db7-95f5-4a13-8322-7e700884c503")
+		(property "Reference" "SW2"
+			(at 29.21 105.41 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "BOOT0"
+			(at 29.21 107.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Button_Switch_SMD:SW_SPST_PTS810"
+			(at 29.21 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 29.21 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 29.21 111.76 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "7e0a87b1-3120-4f03-9f62-c73c72072aca")
+		)
+		(pin "2"
+			(uuid "c18da2e8-ec51-46c6-96c0-f8db285d88d3")
+		)
+		(instances
+			(project "TER_PEDAL"
+				(path "/73ede3a3-6344-40fe-9207-10ff50d388ba/7632a94a-0691-4527-83e2-6d814eae7e64"
+					(reference "SW2")
 					(unit 1)
 				)
 			)

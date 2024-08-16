@@ -4,6 +4,13 @@
 	(generator_version "8.0")
 	(uuid "61a9ab17-1a50-4745-8265-be8d1cb76b69")
 	(paper "A4")
+	(title_block
+		(title "TeR_PEDAL")
+		(date "2023-11-24")
+		(rev "V1.1.0")
+		(company "Tecnun-eRacing")
+		(comment 1 "Ozuba")
+	)
 	(lib_symbols
 		(symbol "Connector:RJ45_Shielded"
 			(pin_names
@@ -581,20 +588,32 @@
 		)
 	)
 	(junction
-		(at 146.05 77.47)
+		(at 154.94 81.28)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "07e34217-8f14-4484-85de-95dc026b8841")
 	)
 	(junction
-		(at 146.05 85.09)
+		(at 154.94 91.44)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "bc950122-70e0-4d93-abc6-4efb05adcad1")
+	)
+	(junction
+		(at 154.94 88.9)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "d8c70a60-fc2d-4a64-9471-e374a367b2ce")
 	)
+	(junction
+		(at 154.94 83.82)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "fe58da77-9d91-4816-8e0c-119edf593bdd")
+	)
 	(wire
 		(pts
-			(xy 142.24 95.25) (xy 153.67 95.25)
+			(xy 151.13 99.06) (xy 162.56 99.06)
 		)
 		(stroke
 			(width 0)
@@ -604,7 +623,17 @@
 	)
 	(wire
 		(pts
-			(xy 146.05 77.47) (xy 146.05 80.01)
+			(xy 151.13 93.98) (xy 154.94 93.98)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1ee8e7cb-f9de-4b04-8010-594cbdc5469a")
+	)
+	(wire
+		(pts
+			(xy 154.94 81.28) (xy 154.94 83.82)
 		)
 		(stroke
 			(width 0)
@@ -614,7 +643,17 @@
 	)
 	(wire
 		(pts
-			(xy 142.24 87.63) (xy 146.05 87.63)
+			(xy 151.13 86.36) (xy 154.94 86.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "53d051a2-e4da-442f-836f-827c1d856a99")
+	)
+	(wire
+		(pts
+			(xy 151.13 91.44) (xy 154.94 91.44)
 		)
 		(stroke
 			(width 0)
@@ -624,7 +663,7 @@
 	)
 	(wire
 		(pts
-			(xy 146.05 85.09) (xy 146.05 87.63)
+			(xy 154.94 88.9) (xy 154.94 91.44)
 		)
 		(stroke
 			(width 0)
@@ -632,9 +671,19 @@
 		)
 		(uuid "6dba0c61-290f-415b-b084-0823ad8293b8")
 	)
+	(wire
+		(pts
+			(xy 154.94 93.98) (xy 154.94 91.44)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "702202ab-6df1-45b4-a357-d710c51c2232")
+	)
 	(polyline
 		(pts
-			(xy 166.37 114.3) (xy 114.3 114.3)
+			(xy 175.26 113.03) (xy 123.19 113.03)
 		)
 		(stroke
 			(width 0)
@@ -644,7 +693,7 @@
 	)
 	(wire
 		(pts
-			(xy 142.24 80.01) (xy 146.05 80.01)
+			(xy 151.13 83.82) (xy 154.94 83.82)
 		)
 		(stroke
 			(width 0)
@@ -654,7 +703,7 @@
 	)
 	(polyline
 		(pts
-			(xy 166.37 68.58) (xy 166.37 114.3)
+			(xy 175.26 67.31) (xy 175.26 113.03)
 		)
 		(stroke
 			(width 0)
@@ -664,7 +713,7 @@
 	)
 	(wire
 		(pts
-			(xy 142.24 85.09) (xy 146.05 85.09)
+			(xy 151.13 88.9) (xy 154.94 88.9)
 		)
 		(stroke
 			(width 0)
@@ -674,7 +723,7 @@
 	)
 	(wire
 		(pts
-			(xy 142.24 77.47) (xy 146.05 77.47)
+			(xy 151.13 81.28) (xy 154.94 81.28)
 		)
 		(stroke
 			(width 0)
@@ -684,7 +733,7 @@
 	)
 	(wire
 		(pts
-			(xy 149.86 85.09) (xy 146.05 85.09)
+			(xy 158.75 88.9) (xy 154.94 88.9)
 		)
 		(stroke
 			(width 0)
@@ -694,7 +743,7 @@
 	)
 	(wire
 		(pts
-			(xy 149.86 77.47) (xy 146.05 77.47)
+			(xy 158.75 81.28) (xy 154.94 81.28)
 		)
 		(stroke
 			(width 0)
@@ -704,7 +753,7 @@
 	)
 	(polyline
 		(pts
-			(xy 114.3 68.58) (xy 166.37 68.58)
+			(xy 123.19 67.31) (xy 175.26 67.31)
 		)
 		(stroke
 			(width 0)
@@ -714,7 +763,7 @@
 	)
 	(wire
 		(pts
-			(xy 142.24 92.71) (xy 153.67 92.71)
+			(xy 151.13 96.52) (xy 162.56 96.52)
 		)
 		(stroke
 			(width 0)
@@ -722,9 +771,19 @@
 		)
 		(uuid "e464375f-db1b-42c8-b42a-0b5c2597a79a")
 	)
+	(wire
+		(pts
+			(xy 154.94 86.36) (xy 154.94 83.82)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e7f757a6-118a-4ab0-98d2-08ee4d977237")
+	)
 	(polyline
 		(pts
-			(xy 114.3 68.58) (xy 114.3 114.3)
+			(xy 123.19 67.31) (xy 123.19 113.03)
 		)
 		(stroke
 			(width 0)
@@ -732,20 +791,21 @@
 		)
 		(uuid "f874c995-038a-463a-b3e2-640dba6e6300")
 	)
-	(text "Cableado de corriente acorde al estandar POE\nplantear el uso de 3 y 6 como conductores\npara mas Potencia\n"
+	(text "UNIVERSAL CONNECTOR"
 		(exclude_from_sim no)
-		(at 118.11 113.03 0)
+		(at 148.336 64.77 0)
 		(effects
 			(font
-				(size 1.27 1.27)
+				(size 2.54 2.54)
+				(thickness 0.254)
+				(bold yes)
 			)
-			(justify left bottom)
 		)
-		(uuid "bffecdbc-8cd2-476e-929b-95fdd7e153cf")
+		(uuid "cdc7999f-3bf6-4db0-aac0-7ca9ff46511e")
 	)
 	(hierarchical_label "CAN+"
 		(shape bidirectional)
-		(at 153.67 92.71 0)
+		(at 162.56 96.52 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -757,7 +817,7 @@
 	)
 	(hierarchical_label "CAN-"
 		(shape bidirectional)
-		(at 153.67 95.25 0)
+		(at 162.56 99.06 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -769,7 +829,7 @@
 	)
 	(symbol
 		(lib_id "power:+24V")
-		(at 149.86 85.09 270)
+		(at 158.75 88.9 270)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -777,8 +837,8 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "45ce35cd-63cd-4070-8b0b-8eb7057f96df")
-		(property "Reference" "#PWR019"
-			(at 146.05 85.09 0)
+		(property "Reference" "#PWR025"
+			(at 154.94 88.9 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -787,7 +847,7 @@
 			)
 		)
 		(property "Value" "+24V"
-			(at 153.67 85.0899 90)
+			(at 162.56 88.8999 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -796,7 +856,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 149.86 85.09 0)
+			(at 158.75 88.9 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -805,7 +865,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 149.86 85.09 0)
+			(at 158.75 88.9 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -814,7 +874,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 149.86 85.09 0)
+			(at 158.75 88.9 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -827,20 +887,20 @@
 		)
 		(instances
 			(project "TER_MAIN_MODULE"
-				(path "/4d50337d-0f48-4e70-bc68-0638d7f1b220/6e820524-bbb2-4b9e-897e-5491d1a946cc"
-					(reference "#PWR019")
-					(unit 1)
-				)
 				(path "/4d50337d-0f48-4e70-bc68-0638d7f1b220/3be90758-2bc9-4709-b067-2e2824c6939d"
 					(reference "#PWR025")
 					(unit 1)
 				)
-				(path "/4d50337d-0f48-4e70-bc68-0638d7f1b220/a976900c-90fd-4a1c-9099-675c63c76c34"
-					(reference "#PWR028")
-					(unit 1)
-				)
 				(path "/4d50337d-0f48-4e70-bc68-0638d7f1b220/6098c490-bd23-4392-ad14-da81e33f66be"
 					(reference "#PWR031")
+					(unit 1)
+				)
+				(path "/4d50337d-0f48-4e70-bc68-0638d7f1b220/6e820524-bbb2-4b9e-897e-5491d1a946cc"
+					(reference "#PWR019")
+					(unit 1)
+				)
+				(path "/4d50337d-0f48-4e70-bc68-0638d7f1b220/a976900c-90fd-4a1c-9099-675c63c76c34"
+					(reference "#PWR028")
 					(unit 1)
 				)
 				(path "/4d50337d-0f48-4e70-bc68-0638d7f1b220/c2684b12-c9fc-4671-b465-93b61dafa44a"
@@ -858,7 +918,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 132.08 100.33 0)
+		(at 140.97 104.14 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -866,8 +926,8 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "64db7ea5-c560-4482-af9c-25e50c0e2e72")
-		(property "Reference" "#PWR018"
-			(at 132.08 106.68 0)
+		(property "Reference" "#PWR024"
+			(at 140.97 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -876,7 +936,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 132.08 105.41 0)
+			(at 140.97 109.22 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -884,7 +944,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 132.08 100.33 0)
+			(at 140.97 104.14 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -893,7 +953,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 132.08 100.33 0)
+			(at 140.97 104.14 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -902,7 +962,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 132.08 100.33 0)
+			(at 140.97 104.14 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -915,20 +975,20 @@
 		)
 		(instances
 			(project "TER_MAIN_MODULE"
-				(path "/4d50337d-0f48-4e70-bc68-0638d7f1b220/6e820524-bbb2-4b9e-897e-5491d1a946cc"
-					(reference "#PWR018")
-					(unit 1)
-				)
 				(path "/4d50337d-0f48-4e70-bc68-0638d7f1b220/3be90758-2bc9-4709-b067-2e2824c6939d"
 					(reference "#PWR024")
 					(unit 1)
 				)
-				(path "/4d50337d-0f48-4e70-bc68-0638d7f1b220/a976900c-90fd-4a1c-9099-675c63c76c34"
-					(reference "#PWR027")
-					(unit 1)
-				)
 				(path "/4d50337d-0f48-4e70-bc68-0638d7f1b220/6098c490-bd23-4392-ad14-da81e33f66be"
 					(reference "#PWR030")
+					(unit 1)
+				)
+				(path "/4d50337d-0f48-4e70-bc68-0638d7f1b220/6e820524-bbb2-4b9e-897e-5491d1a946cc"
+					(reference "#PWR018")
+					(unit 1)
+				)
+				(path "/4d50337d-0f48-4e70-bc68-0638d7f1b220/a976900c-90fd-4a1c-9099-675c63c76c34"
+					(reference "#PWR027")
 					(unit 1)
 				)
 				(path "/4d50337d-0f48-4e70-bc68-0638d7f1b220/c2684b12-c9fc-4671-b465-93b61dafa44a"
@@ -946,7 +1006,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 149.86 77.47 90)
+		(at 158.75 81.28 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -954,8 +1014,8 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "6a505b10-c1a2-4093-a108-46c076b2a06f")
-		(property "Reference" "#PWR020"
-			(at 156.21 77.47 0)
+		(property "Reference" "#PWR026"
+			(at 165.1 81.28 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -964,7 +1024,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 153.67 77.4699 90)
+			(at 162.56 81.2799 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -973,7 +1033,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 149.86 77.47 0)
+			(at 158.75 81.28 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -982,7 +1042,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 149.86 77.47 0)
+			(at 158.75 81.28 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -991,7 +1051,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 149.86 77.47 0)
+			(at 158.75 81.28 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1004,20 +1064,20 @@
 		)
 		(instances
 			(project "TER_MAIN_MODULE"
-				(path "/4d50337d-0f48-4e70-bc68-0638d7f1b220/6e820524-bbb2-4b9e-897e-5491d1a946cc"
-					(reference "#PWR020")
-					(unit 1)
-				)
 				(path "/4d50337d-0f48-4e70-bc68-0638d7f1b220/3be90758-2bc9-4709-b067-2e2824c6939d"
 					(reference "#PWR026")
 					(unit 1)
 				)
-				(path "/4d50337d-0f48-4e70-bc68-0638d7f1b220/a976900c-90fd-4a1c-9099-675c63c76c34"
-					(reference "#PWR029")
-					(unit 1)
-				)
 				(path "/4d50337d-0f48-4e70-bc68-0638d7f1b220/6098c490-bd23-4392-ad14-da81e33f66be"
 					(reference "#PWR032")
+					(unit 1)
+				)
+				(path "/4d50337d-0f48-4e70-bc68-0638d7f1b220/6e820524-bbb2-4b9e-897e-5491d1a946cc"
+					(reference "#PWR020")
+					(unit 1)
+				)
+				(path "/4d50337d-0f48-4e70-bc68-0638d7f1b220/a976900c-90fd-4a1c-9099-675c63c76c34"
+					(reference "#PWR029")
 					(unit 1)
 				)
 				(path "/4d50337d-0f48-4e70-bc68-0638d7f1b220/c2684b12-c9fc-4671-b465-93b61dafa44a"
@@ -1035,7 +1095,7 @@
 	)
 	(symbol
 		(lib_id "Connector:RJ45_Shielded")
-		(at 132.08 87.63 0)
+		(at 140.97 91.44 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -1043,8 +1103,8 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "c0cd3bba-6e25-49b5-a735-c4a53dff7c30")
-		(property "Reference" "J3"
-			(at 132.08 69.85 0)
+		(property "Reference" "J5"
+			(at 140.97 73.66 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1052,7 +1112,7 @@
 			)
 		)
 		(property "Value" "RJ45_Shielded"
-			(at 132.08 72.39 0)
+			(at 140.97 76.2 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1060,7 +1120,7 @@
 			)
 		)
 		(property "Footprint" "Connector_RJ:RJ45_Ninigi_GE"
-			(at 132.08 86.995 90)
+			(at 140.97 90.805 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1069,7 +1129,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 132.08 86.995 90)
+			(at 140.97 90.805 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1078,7 +1138,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 132.08 87.63 0)
+			(at 140.97 91.44 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1115,20 +1175,20 @@
 		)
 		(instances
 			(project "TER_MAIN_MODULE"
-				(path "/4d50337d-0f48-4e70-bc68-0638d7f1b220/6e820524-bbb2-4b9e-897e-5491d1a946cc"
-					(reference "J3")
-					(unit 1)
-				)
 				(path "/4d50337d-0f48-4e70-bc68-0638d7f1b220/3be90758-2bc9-4709-b067-2e2824c6939d"
 					(reference "J5")
 					(unit 1)
 				)
-				(path "/4d50337d-0f48-4e70-bc68-0638d7f1b220/a976900c-90fd-4a1c-9099-675c63c76c34"
-					(reference "J6")
-					(unit 1)
-				)
 				(path "/4d50337d-0f48-4e70-bc68-0638d7f1b220/6098c490-bd23-4392-ad14-da81e33f66be"
 					(reference "J7")
+					(unit 1)
+				)
+				(path "/4d50337d-0f48-4e70-bc68-0638d7f1b220/6e820524-bbb2-4b9e-897e-5491d1a946cc"
+					(reference "J3")
+					(unit 1)
+				)
+				(path "/4d50337d-0f48-4e70-bc68-0638d7f1b220/a976900c-90fd-4a1c-9099-675c63c76c34"
+					(reference "J6")
 					(unit 1)
 				)
 				(path "/4d50337d-0f48-4e70-bc68-0638d7f1b220/c2684b12-c9fc-4671-b465-93b61dafa44a"

@@ -613,7 +613,7 @@
 	)
 	(wire
 		(pts
-			(xy 54.61 182.88) (xy 49.53 182.88)
+			(xy 54.61 177.8) (xy 49.53 177.8)
 		)
 		(stroke
 			(width 0)
@@ -786,7 +786,7 @@
 	)
 	(text "POWER"
 		(exclude_from_sim no)
-		(at 64.77 184.15 0)
+		(at 64.77 179.07 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -817,7 +817,7 @@
 		)
 		(uuid "5bf1430c-5988-4a3e-b9af-9cf19c760e4b")
 	)
-	(label "DBG_LED"
+	(label "SYS"
 		(at 26.67 163.83 0)
 		(fields_autoplaced yes)
 		(effects
@@ -828,7 +828,7 @@
 		)
 		(uuid "8c75443e-4f71-4a67-a5ec-51c0ae7cf29a")
 	)
-	(label "DBG_LED"
+	(label "SYS"
 		(at 161.29 96.52 180)
 		(fields_autoplaced yes)
 		(effects
@@ -841,7 +841,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 54.61 182.88 90)
+		(at 54.61 177.8 90)
 		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
@@ -851,7 +851,7 @@
 		(fields_autoplaced yes)
 		(uuid "03b479d8-1da3-479f-8d12-d662c9e7fe6e")
 		(property "Reference" "#PWR045"
-			(at 60.96 182.88 0)
+			(at 60.96 177.8 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -860,7 +860,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 58.42 183.515 90)
+			(at 58.42 178.435 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -869,7 +869,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 54.61 182.88 0)
+			(at 54.61 177.8 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -878,7 +878,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 54.61 182.88 0)
+			(at 54.61 177.8 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -887,7 +887,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 54.61 182.88 0)
+			(at 54.61 177.8 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -925,7 +925,7 @@
 				)
 			)
 		)
-		(property "Value" "LED"
+		(property "Value" "SYS"
 			(at 45.72 161.29 0)
 			(effects
 				(font
@@ -1173,7 +1173,7 @@
 	)
 	(symbol
 		(lib_id "Device:LED")
-		(at 45.72 182.88 0)
+		(at 45.72 177.8 0)
 		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
@@ -1182,15 +1182,15 @@
 		(dnp no)
 		(uuid "a164f649-a259-4939-8034-5ad96ce6a6de")
 		(property "Reference" "D5"
-			(at 46.99 186.69 0)
+			(at 46.99 181.61 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "LED"
-			(at 45.72 180.34 0)
+		(property "Value" "PWR"
+			(at 45.72 175.26 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1198,7 +1198,7 @@
 			)
 		)
 		(property "Footprint" "LED_SMD:LED_0603_1608Metric"
-			(at 45.72 182.88 0)
+			(at 45.72 177.8 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1207,7 +1207,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 45.72 182.88 0)
+			(at 45.72 177.8 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1216,7 +1216,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 45.72 182.88 0)
+			(at 45.72 177.8 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1257,7 +1257,7 @@
 				)
 			)
 		)
-		(property "Value" "LED"
+		(property "Value" "IMP"
 			(at 45.72 166.37 0)
 			(effects
 				(font
@@ -1509,7 +1509,7 @@
 	)
 	(symbol
 		(lib_id "power:+3.3V")
-		(at 34.29 182.88 90)
+		(at 34.29 177.8 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -1518,7 +1518,7 @@
 		(fields_autoplaced yes)
 		(uuid "dd8541da-089f-42c9-8f65-16fc6b9d99e2")
 		(property "Reference" "#PWR046"
-			(at 38.1 182.88 0)
+			(at 38.1 177.8 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1527,7 +1527,7 @@
 			)
 		)
 		(property "Value" "+3.3V"
-			(at 30.48 183.515 90)
+			(at 30.48 178.435 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1536,7 +1536,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 34.29 182.88 0)
+			(at 34.29 177.8 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1545,7 +1545,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 34.29 182.88 0)
+			(at 34.29 177.8 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1554,7 +1554,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 34.29 182.88 0)
+			(at 34.29 177.8 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1640,7 +1640,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 38.1 182.88 270)
+		(at 38.1 177.8 270)
 		(mirror x)
 		(unit 1)
 		(exclude_from_sim no)
@@ -1649,14 +1649,6 @@
 		(dnp no)
 		(uuid "e3272eed-410d-4918-ab93-adb331cc3941")
 		(property "Reference" "R15"
-			(at 38.1 185.42 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "120R"
 			(at 38.1 180.34 90)
 			(effects
 				(font
@@ -1664,8 +1656,16 @@
 				)
 			)
 		)
+		(property "Value" "120R"
+			(at 38.1 175.26 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 38.1 184.658 90)
+			(at 38.1 179.578 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1674,7 +1674,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 38.1 182.88 0)
+			(at 38.1 177.8 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1683,7 +1683,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 38.1 182.88 0)
+			(at 38.1 177.8 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1950,16 +1950,6 @@
 			)
 			(uuid "6eb8a578-780b-410f-aee0-d31e269fb2f2")
 		)
-		(pin "DBG_LED" input
-			(at 149.86 96.52 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-			(uuid "245ce301-3d84-4abf-8733-282f54f4bf4c")
-		)
 		(pin "APPS_2_ADC" input
 			(at 121.92 73.66 180)
 			(effects
@@ -1980,6 +1970,16 @@
 			)
 			(uuid "8a65c3e6-8ae6-4339-b37b-a48f12987dd9")
 		)
+		(pin "SYS" input
+			(at 149.86 96.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "977337d5-e456-48dc-89d0-b68f3bbf1cc5")
+		)
 		(instances
 			(project "TER_PEDAL"
 				(path "/73ede3a3-6344-40fe-9207-10ff50d388ba"
@@ -1990,7 +1990,7 @@
 	)
 	(sheet
 		(at 171.45 36.83)
-		(size 31.75 21.59)
+		(size 31.75 19.05)
 		(fields_autoplaced yes)
 		(stroke
 			(width 0.1524)
@@ -2010,7 +2010,7 @@
 			)
 		)
 		(property "Sheetfile" "CAN.kicad_sch"
-			(at 171.45 59.0046 0)
+			(at 171.45 56.4646 0)
 			(effects
 				(font
 					(size 1.27 1.27)
