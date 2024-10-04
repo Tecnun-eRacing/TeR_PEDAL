@@ -3507,7 +3507,7 @@
 			(uuid "a0a73c1c-7f66-44f8-96a9-4fa045f44bde")
 		)
 		(instances
-			(project ""
+			(project "TER_PEDAL"
 				(path "/73ede3a3-6344-40fe-9207-10ff50d388ba/9549329b-4f41-4937-ad52-b46ec86d3c7d"
 					(reference "C18")
 					(unit 1)
@@ -3810,7 +3810,7 @@
 			(uuid "df0d2153-2f48-40ed-a6b6-83676e3bec71")
 		)
 		(instances
-			(project ""
+			(project "TER_PEDAL"
 				(path "/73ede3a3-6344-40fe-9207-10ff50d388ba/9549329b-4f41-4937-ad52-b46ec86d3c7d"
 					(reference "C17")
 					(unit 1)
@@ -4118,7 +4118,7 @@
 			(uuid "a6834548-5eb4-48d0-b915-18a8e7a331da")
 		)
 		(instances
-			(project ""
+			(project "TER_PEDAL"
 				(path "/73ede3a3-6344-40fe-9207-10ff50d388ba/9549329b-4f41-4937-ad52-b46ec86d3c7d"
 					(reference "U5")
 					(unit 1)
