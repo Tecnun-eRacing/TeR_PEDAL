@@ -2945,6 +2945,28 @@
 		)
 		(uuid "7ac2bfa2-f126-42d4-bcc7-5fade379b9e5")
 	)
+	(label "can+"
+		(at 121.92 80.01 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "50910198-91cd-4224-b59e-534422bac99f")
+	)
+	(label "can-"
+		(at 123.19 110.49 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "94d56e27-b13e-41a9-a2f3-9104f8c4f49d")
+	)
 	(hierarchical_label "CAN_RX"
 		(shape output)
 		(at 80.01 92.71 180)
