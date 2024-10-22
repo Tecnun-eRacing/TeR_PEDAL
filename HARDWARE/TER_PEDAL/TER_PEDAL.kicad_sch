@@ -613,6 +613,16 @@
 	)
 	(wire
 		(pts
+			(xy 149.86 73.025) (xy 163.195 73.025)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "064c48b5-1071-4ef3-90ff-26a4d862db30")
+	)
+	(wire
+		(pts
 			(xy 54.61 177.8) (xy 49.53 177.8)
 		)
 		(stroke
@@ -770,6 +780,16 @@
 			(type default)
 		)
 		(uuid "f520fcc0-4c51-4bf8-8f4a-171aedc72b7c")
+	)
+	(wire
+		(pts
+			(xy 149.86 76.835) (xy 163.195 76.835)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f7e9816f-c891-4eb7-909b-f045b6eb3903")
 	)
 	(text "STATUS LEDS"
 		(exclude_from_sim no)
@@ -1775,6 +1795,64 @@
 		)
 	)
 	(sheet
+		(at 163.195 69.596)
+		(size 21.336 14.732)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "51fa3b11-9384-42d5-b8d1-ecf2ebc0a386")
+		(property "Sheetname" "EEPROM"
+			(at 163.195 68.8844 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "EEPROM.kicad_sch"
+			(at 163.195 84.9126 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "SDA" input
+			(at 163.195 73.025 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "75581209-8c48-46d2-86ca-ae376ba2523b")
+		)
+		(pin "SCL" input
+			(at 163.195 76.835 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "190e85c4-f156-4c2e-9c93-6d40ca87a733")
+		)
+		(instances
+			(project "TER_PEDAL"
+				(path "/73ede3a3-6344-40fe-9207-10ff50d388ba"
+					(page "7")
+				)
+			)
+		)
+	)
+	(sheet
 		(at 223.52 38.1)
 		(size 26.67 19.05)
 		(fields_autoplaced yes)
@@ -1979,6 +2057,26 @@
 				(justify right)
 			)
 			(uuid "977337d5-e456-48dc-89d0-b68f3bbf1cc5")
+		)
+		(pin "SDA" input
+			(at 149.86 73.025 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "8a99c03d-6451-4e09-ab1b-aec0378e743b")
+		)
+		(pin "SCL" input
+			(at 149.86 76.835 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "66647586-8c4a-49d4-b535-a8ca0adf030c")
 		)
 		(instances
 			(project "TER_PEDAL"

@@ -623,6 +623,10 @@
     [
       "bd370b0f-91e5-4328-9d6f-8dc10ff0cff7",
       "SENSORS"
+    ],
+    [
+      "51fa3b11-9384-42d5-b8d1-ecf2ebc0a386",
+      "EEPROM"
     ]
   ],
   "text_variables": {}
