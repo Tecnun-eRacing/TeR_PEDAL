@@ -760,7 +760,7 @@
 			(uuid "3e975b0c-654b-4f54-8854-402c2f1aced2")
 		)
 		(instances
-			(project ""
+			(project "TER_PEDAL"
 				(path "/73ede3a3-6344-40fe-9207-10ff50d388ba/51fa3b11-9384-42d5-b8d1-ecf2ebc0a386"
 					(reference "R24")
 					(unit 1)
@@ -1028,7 +1028,7 @@
 			(uuid "3ea37c4b-86f4-4e26-a52f-59921e1ee34e")
 		)
 		(instances
-			(project ""
+			(project "TER_PEDAL"
 				(path "/73ede3a3-6344-40fe-9207-10ff50d388ba/51fa3b11-9384-42d5-b8d1-ecf2ebc0a386"
 					(reference "R25")
 					(unit 1)
