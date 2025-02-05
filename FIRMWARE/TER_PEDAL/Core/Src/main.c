@@ -188,6 +188,7 @@ void Error_Handler(void)
 {
   /* USER CODE BEGIN Error_Handler_Debug */
 	/* User can add his own implementation to report the HAL error return state */
+	HAL_GPIO_WritePin(SYS_GPIO_Port, SYS_Pin, SET);
 	__disable_irq();
 	while (1) {
 	}
