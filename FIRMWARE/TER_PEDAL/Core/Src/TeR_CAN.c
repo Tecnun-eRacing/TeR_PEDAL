@@ -43,6 +43,9 @@ uint8_t RxData[8];
 
 //Variable msgIndex para la cola de envio
 uint8_t msgIndex = 0; //Hasta 255 mensajes
+
+//eeprom library handler
+extern EE24_HandleTypeDef ee24;
 /* -------------------------------------------------------------------------- */
 
 struct TeR_t TeR;
@@ -135,23 +138,19 @@ uint8_t command(uint8_t cmd) {
 	case TER_COMMAND_CMD_CALIBRATE_APPS_MIN_CHOICE: //Calibrate ACC 0% Pos and Store
 		offset.low[2] = adcReadings[2]; //Recoje el valor actual
 		offset.low[1] = adcReadings[1];
-		EEPROM_Write(0,0,(uint8_t*) &offset, sizeof(offset)); //Almacena
 		break;
 
 	case TER_COMMAND_CMD_CALIBRATE_APPS_MAX_CHOICE: //Calibrate ACC 100% Pos and Store
 		offset.high[2] = adcReadings[2]; //Recoje el valor actual
 		offset.high[1] = adcReadings[1];
-		EEPROM_Write(0,0,(uint8_t*) &offset, sizeof(offset));
 		break;
 
 	case TER_COMMAND_CMD_CALIBRATE_STEER_RIGHTEST_CHOICE: //Calibrate Rightest Steer Position
 		offset.low[0] = adcReadings[0]; //Recoje el valor actual
-		EEPROM_Write(0,0,(uint8_t*) &offset, sizeof(offset));
 		break;
 
 	case TER_COMMAND_CMD_CALIBRATE_STEER_LEFTEST_CHOICE: //Calibrate Leftest Steer Position
 		offset.high[0] = adcReadings[0]; //Recoje el valor actual
-		EEPROM_Write(0,0,(uint8_t*) &offset, sizeof(offset));
 		break;
 
 	default:
@@ -159,5 +158,6 @@ uint8_t command(uint8_t cmd) {
 		break;
 
 	}
+	EE24_Write(&ee24, EE24_ADDRESS_DEFAULT,(uint8_t *) &offset,sizeof(offset),500);
 	return 1;
 }

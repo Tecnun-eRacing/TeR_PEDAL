@@ -4,6 +4,7 @@
 "./Core/Src/adc.o"
 "./Core/Src/can.o"
 "./Core/Src/dma.o"
+"./Core/Src/ee24.o"
 "./Core/Src/gpio.o"
 "./Core/Src/i2c.o"
 "./Core/Src/main.o"

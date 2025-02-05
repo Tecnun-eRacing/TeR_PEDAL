@@ -5,7 +5,7 @@
  *      Author: Ozuba
  */
 #include "pedal.h"
-
+extern EE24_HandleTypeDef ee24;
 //ADC usado
 ADC_HandleTypeDef *adc;
 //Implausabilities
@@ -22,7 +22,8 @@ int32_t adcReadings[4]; //32*3, el adc saca 12 bits alineados a la derecha usamo
 void initPedal(ADC_HandleTypeDef* hadc) {
 	adc = hadc;
 	//Carga de los offsets
-	EEPROM_Read(0,0, (uint8_t *) &offset, sizeof(offset));
+	//EEPROM_Read(0,0, (uint8_t *) &offset, sizeof(offset));
+	EE24_Read(&ee24,EE24_ADDRESS_DEFAULT,(uint8_t *) &offset,sizeof(offset),500);
 	//Check if there are offsets written in flash
 	if(offset.written!=1) { // En un futuro lo ideal sería ver que los valores están en rangos lógicos
 		offset.high[0] = 4096; //Valores por defecto
@@ -32,7 +33,8 @@ void initPedal(ADC_HandleTypeDef* hadc) {
 		offset.low[1] = 0;
 		offset.low[2] = 0;
 		offset.written = 1;// Establece un byte en memoria que indica que la placa ha sido programada
-		EEPROM_Write(0,0,(uint8_t *) &offset,  sizeof(offset));
+		//EEPROM_Write(0,0,(uint8_t *) &offset,  sizeof(offset));
+		EE24_Write(&ee24, EE24_ADDRESS_DEFAULT,(uint8_t *) &offset,sizeof(offset),500);
 	}
 
 	//Inicializamos el DMA para que copie nuestros datos al buffer de lecturas

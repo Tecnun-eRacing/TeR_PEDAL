@@ -14,6 +14,7 @@
 #include "TeR_UTILS.h"
 #include "TeR_CAN.h"
 #include "EEPROM.h"
+#include "ee24.h"
 #define MAXWHEELANGLE 30 //Angulo limite de la rueda
 #define MARGIN 200 //Points of adc
 
