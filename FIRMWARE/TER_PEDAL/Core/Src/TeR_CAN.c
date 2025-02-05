@@ -158,6 +158,6 @@ uint8_t command(uint8_t cmd) {
 		break;
 
 	}
-	EE24_Write(&ee24, EE24_ADDRESS_DEFAULT,(uint8_t *) &offset,sizeof(offset),500);
+	EE24_Write(&ee24, 0,(uint8_t *) &offset,sizeof(offset),500);
 	return 1;
 }
