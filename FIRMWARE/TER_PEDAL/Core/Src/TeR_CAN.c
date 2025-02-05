@@ -135,24 +135,23 @@ uint8_t command(uint8_t cmd) {
 	case TER_COMMAND_CMD_CALIBRATE_APPS_MIN_CHOICE: //Calibrate ACC 0% Pos and Store
 		offset.low[2] = adcReadings[2]; //Recoje el valor actual
 		offset.low[1] = adcReadings[1];
-		ee_writeToRam(0, sizeof(offset), (uint8_t*) &offset); //Almacena
-		ee_commit();
+		EEPROM_Write(0,0,(uint8_t*) &offset, sizeof(offset)); //Almacena
 		break;
 
 	case TER_COMMAND_CMD_CALIBRATE_APPS_MAX_CHOICE: //Calibrate ACC 100% Pos and Store
 		offset.high[2] = adcReadings[2]; //Recoje el valor actual
 		offset.high[1] = adcReadings[1];
-		ee_writeToRam(0, sizeof(offset), (uint8_t*) &offset); //Almacena
+		EEPROM_Write(0,0,(uint8_t*) &offset, sizeof(offset));
 		break;
 
 	case TER_COMMAND_CMD_CALIBRATE_STEER_RIGHTEST_CHOICE: //Calibrate Rightest Steer Position
 		offset.low[0] = adcReadings[0]; //Recoje el valor actual
-		ee_writeToRam(0, sizeof(offset), (uint8_t*) &offset); //Almacena
+		EEPROM_Write(0,0,(uint8_t*) &offset, sizeof(offset));
 		break;
 
 	case TER_COMMAND_CMD_CALIBRATE_STEER_LEFTEST_CHOICE: //Calibrate Leftest Steer Position
 		offset.high[0] = adcReadings[0]; //Recoje el valor actual
-		ee_writeToRam(0, sizeof(offset), (uint8_t*) &offset); //Almacena
+		EEPROM_Write(0,0,(uint8_t*) &offset, sizeof(offset));
 		break;
 
 	default:
@@ -160,6 +159,5 @@ uint8_t command(uint8_t cmd) {
 		break;
 
 	}
-	ee_commit(); //Almacena en la flash la calibración
 	return 1;
 }

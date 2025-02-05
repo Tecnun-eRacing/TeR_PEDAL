@@ -21,6 +21,7 @@
 #include "adc.h"
 #include "can.h"
 #include "dma.h"
+#include "i2c.h"
 #include "tim.h"
 #include "gpio.h"
 
@@ -98,6 +99,7 @@ int main(void)
   MX_ADC1_Init();
   MX_CAN_Init();
   MX_TIM2_Init();
+  MX_I2C1_Init();
 
   /* Initialize interrupts */
   MX_NVIC_Init();

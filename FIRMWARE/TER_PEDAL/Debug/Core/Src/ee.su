@@ -1,7 +1,0 @@
-../Core/Src/ee.c:194:6:ee_init	8	static
-../Core/Src/ee.c:203:6:ee_format	40	static
-../Core/Src/ee.c:245:6:ee_read	32	static
-../Core/Src/ee.c:264:6:ee_write	168	static
-../Core/Src/ee.c:313:6:ee_writeToRam	24	static
-../Core/Src/ee.c:327:7:ee_commit	8	static
-../Core/Src/ee.c:338:11:ee_maxVirtualAddress	4	static

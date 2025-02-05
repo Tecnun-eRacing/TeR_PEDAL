@@ -1,2 +1,2 @@
-../Core/Src/pedal.c:24:6:initPedal	2
-../Core/Src/pedal.c:50:6:readSensors	12
+../Core/Src/pedal.c:25:6:initPedal	2
+../Core/Src/pedal.c:48:6:readSensors	12

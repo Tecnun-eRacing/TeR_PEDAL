@@ -6,7 +6,6 @@
  */
 #include "pedal.h"
 
-
 //ADC usado
 ADC_HandleTypeDef *adc;
 //Implausabilities
@@ -14,22 +13,19 @@ persist_t DELTA_IMP;
 persist_t RANGE_IMP;
 uint8_t impRange; //1 if signals are out of range
 uint8_t impDelta; //1 if APPS difference exceeds 10% of total range
-
+float value;
 //Offsets de los sensores {Steer,APPS1,APPS2,Brake}
-struct offsets_t offset;
+offsets_t offset;
 
 //Estructura de lectura para el ADC
 int32_t adcReadings[4]; //32*3, el adc saca 12 bits alineados a la derecha usamos enteros con signo pa que no nos la lien las restas al comprobar offsets
 
 void initPedal(ADC_HandleTypeDef* hadc) {
 	adc = hadc;
-	ee_init(); //Inicializamos la flash (EEPROM virtual)
-
 	//Carga de los offsets
-	ee_read(0, sizeof(offset), (uint8_t*) &offset); //Lee de memoria el struct
-
+EEPROM_Read(0, 0, (uint8_t *) &offset, sizeof(offset)); //cargamos datos de la EEPROM
 	//Check if there are offsets written in flash
-	if (!offset.written) { // En un futuro lo ideal sería ver que los valores están en rangos lógicos
+	if(!offset.written) { // En un futuro lo ideal sería ver que los valores están en rangos lógicos
 		offset.high[0] = 4096; //Valores por defecto
 		offset.high[1] = 4096;
 		offset.high[2] = 4096;
@@ -37,8 +33,8 @@ void initPedal(ADC_HandleTypeDef* hadc) {
 		offset.low[1] = 0;
 		offset.low[2] = 0;
 		offset.written = 1; // Establece un byte en memoria que indica que la placa ha sido programada
-		ee_writeToRam(0, sizeof(offset), (uint8_t*) &offset);
-		ee_commit();
+		//ee_writeToRam(0, sizeof(offset), (uint8_t*) &offset);
+		EEPROM_Write(0,0,(uint8_t *) &offset,  sizeof(offset));
 	}
 
 	//Inicializamos el DMA para que copie nuestros datos al buffer de lecturas
