@@ -29,3 +29,4 @@ sym-lib-table
 *.bck
 *.sch-bak
 *.lck
+production/
