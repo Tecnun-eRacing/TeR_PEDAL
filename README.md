@@ -1,4 +1,10 @@
-# TER_PEDAL
-Placa de lectura de sensores frontales, se encarga de gestionar al APPS y el presurometro del freno por ahora, incorpora un sistema de detección de implausabilities,unos filtros paso bajo para los sensores y cómunica por can todos los datos a través
-de una interfáz CAN universal. Va a servir como toma de contacto con las nuevas herramientas y cómo prueba de nuevas funcionalidades como el Bootloader CAN.
-![Screenshot](https://github.com/Tecnun-eRacing/TER_PEDAL/blob/main/DOCUMENTATION/IMG/TER_PEDAL.png)
+# TeR_PEDAL
+The drivers Input Module Sensor, built to fit FSG rules, it provides the vehicle 
+data about:
+- Brake Pressure
+- APPS (Accelerator Pedal Position Sensor)
+- Steering Sensor
+## Features
+- The module is able to self calibrate itself through a series of commands trough CAN 2.0
+- Implausible range detection in all sensors + Safety set-zero
+- Storage of calibration values in the internal EEPROM for persistance
