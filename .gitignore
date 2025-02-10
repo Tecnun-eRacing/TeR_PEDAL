@@ -15,7 +15,6 @@ fp-lib-table
 sym-lib-table
 *.caches
 *.kicad_prl
-*.kicad_wks
 
 # KiCad build files
 *-backups/

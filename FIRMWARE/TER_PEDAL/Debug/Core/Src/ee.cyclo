@@ -1,7 +1,0 @@
-../Core/Src/ee.c:194:6:ee_init	1
-../Core/Src/ee.c:203:6:ee_format	4
-../Core/Src/ee.c:245:6:ee_read	5
-../Core/Src/ee.c:264:6:ee_write	7
-../Core/Src/ee.c:313:6:ee_writeToRam	3
-../Core/Src/ee.c:327:7:ee_commit	2
-../Core/Src/ee.c:338:11:ee_maxVirtualAddress	1

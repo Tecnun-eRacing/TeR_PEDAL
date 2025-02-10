@@ -1,2 +1,0 @@
-../Core/Src/pedal.c:24:6:initPedal	16	static
-../Core/Src/pedal.c:50:6:readSensors	16	static
