@@ -13,7 +13,6 @@
 #include "adc.h" //para realizar lecturas
 #include "TeR_UTILS.h"
 #include "TeR_CAN.h"
-#include "EEPROM.h"
 #include "ee24.h"
 #define MAXWHEELANGLE 30 //Angulo limite de la rueda
 #define MARGIN 200 //Points of adc
@@ -26,7 +25,7 @@ typedef struct{
 	uint32_t low[3];
 	uint32_t high[3];
 	uint8_t written; //esta variable permite programar placas rápido ya que esta a 0 únicamente si la placa
-}__attribute__((packed,aligned(64))) offsets_t; //para que la estructura siempre mida 64 bytes
+}offsets_t; //para que la estructura siempre mida 64 bytes
 //Para que los comandos puedan cambiarla (Abstraer a futuro)
 extern offsets_t offset; //expone offsets al resto de archivos
 extern int32_t adcReadings[4]; // expone las lecturas al resto de archivos

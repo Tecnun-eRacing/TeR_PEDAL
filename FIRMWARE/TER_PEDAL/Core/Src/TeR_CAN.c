@@ -159,6 +159,5 @@ uint8_t command(uint8_t cmd) {
 
 	}
 	EE24_Write(&ee24, 0,(uint8_t *) &offset,sizeof(offset),500);
-	//EEPROM_Write(0,0,(uint8_t *) &offset,  sizeof(offset));
 	return 1;
 }

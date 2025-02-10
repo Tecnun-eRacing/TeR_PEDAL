@@ -1,4 +1,3 @@
-"./Core/Src/EEPROM.o"
 "./Core/Src/TeR_CAN.o"
 "./Core/Src/TeR_UTILS.o"
 "./Core/Src/adc.o"

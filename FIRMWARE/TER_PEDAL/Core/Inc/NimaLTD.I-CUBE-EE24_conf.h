@@ -44,7 +44,7 @@
 	MiddleWare fileName : ./NimaLTD.I-CUBE-EE24_conf.h
 */
 /*---------- EE24_SIZE  -----------*/
-#define EE24_SIZE      EE24_2KBIT
+#define EE24_SIZE EE24_2KBIT
 
 /*---------- EE24_RTOS  -----------*/
 #define EE24_RTOS      EE24_RTOS_DISABLE

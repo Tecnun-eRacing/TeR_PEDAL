@@ -21,31 +21,31 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, DATA
   8 .data         0000000c  20000000  08005638  00007000  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  9 .bss          000002c8  20000040  08005644  00007040  2**6
+  9 .bss          000002a0  2000000c  08005644  0000700c  2**2
                   ALLOC
- 10 ._user_heap_stack 00000600  20000308  08005644  00007308  2**0
+ 10 ._user_heap_stack 00000604  200002ac  08005644  000072ac  2**0
                   ALLOC
  11 .ARM.attributes 00000029  00000000  00000000  0000700c  2**0
                   CONTENTS, READONLY
- 12 .debug_info   00019594  00000000  00000000  00007035  2**0
+ 12 .debug_info   0001958e  00000000  00000000  00007035  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_abbrev 0000344d  00000000  00000000  000205c9  2**0
+ 13 .debug_abbrev 00003405  00000000  00000000  000205c3  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_aranges 00002068  00000000  00000000  00023a18  2**3
+ 14 .debug_aranges 00002068  00000000  00000000  000239c8  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_rnglists 000018db  00000000  00000000  00025a80  2**0
+ 15 .debug_rnglists 000018db  00000000  00000000  00025a30  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_macro  00004091  00000000  00000000  0002735b  2**0
+ 16 .debug_macro  0001aa64  00000000  00000000  0002730b  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   0001bde9  00000000  00000000  0002b3ec  2**0
+ 17 .debug_line   0001bdc5  00000000  00000000  00041d6f  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    00098717  00000000  00000000  000471d5  2**0
+ 18 .debug_str    00098708  00000000  00000000  0005db34  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000043  00000000  00000000  000df8ec  2**0
+ 19 .comment      00000043  00000000  00000000  000f623c  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00008ca8  00000000  00000000  000df930  2**2
+ 20 .debug_frame  00008ca8  00000000  00000000  000f6280  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 00000084  00000000  00000000  000e85d8  2**0
+ 21 .debug_line_str 00000084  00000000  00000000  000fef28  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -62,7 +62,7 @@ Disassembly of section .text:
  800011e:	2301      	movs	r3, #1
  8000120:	7023      	strb	r3, [r4, #0]
  8000122:	bd10      	pop	{r4, pc}
- 8000124:	20000040 	.word	0x20000040
+ 8000124:	2000000c 	.word	0x2000000c
  8000128:	00000000 	.word	0x00000000
  800012c:	080055ec 	.word	0x080055ec
 
@@ -75,7 +75,7 @@ Disassembly of section .text:
  800013a:	f3af 8000 	nop.w
  800013e:	bd08      	pop	{r3, pc}
  8000140:	00000000 	.word	0x00000000
- 8000144:	20000044 	.word	0x20000044
+ 8000144:	20000010 	.word	0x20000010
  8000148:	080055ec 	.word	0x080055ec
 
 0800014c <initCAN>:
@@ -123,8 +123,8 @@ uint8_t initCAN(CAN_HandleTypeDef *hcan, TIM_HandleTypeDef *htim) {
  8000186:	3708      	adds	r7, #8
  8000188:	46bd      	mov	sp, r7
  800018a:	bd80      	pop	{r7, pc}
- 800018c:	2000005c 	.word	0x2000005c
- 8000190:	20000060 	.word	0x20000060
+ 800018c:	20000028 	.word	0x20000028
+ 8000190:	2000002c 	.word	0x2000002c
 
 08000194 <HAL_TIM_PeriodElapsedCallback>:
 
@@ -151,7 +151,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) { //Envio temporizad
  80001b2:	46bd      	mov	sp, r7
  80001b4:	bd80      	pop	{r7, pc}
  80001b6:	bf00      	nop
- 80001b8:	20000060 	.word	0x20000060
+ 80001b8:	2000002c 	.word	0x2000002c
 
 080001bc <HAL_CAN_RxFifo0MsgPendingCallback>:
 
@@ -186,9 +186,9 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan) { //No hay disti
  80001ea:	3708      	adds	r7, #8
  80001ec:	46bd      	mov	sp, r7
  80001ee:	bd80      	pop	{r7, pc}
- 80001f0:	2000005c 	.word	0x2000005c
- 80001f4:	200000a4 	.word	0x200000a4
- 80001f8:	20000088 	.word	0x20000088
+ 80001f0:	20000028 	.word	0x20000028
+ 80001f4:	20000070 	.word	0x20000070
+ 80001f8:	20000054 	.word	0x20000054
 
 080001fc <decodeMsg>:
 /* -------------------------------------------------------------------------- */
@@ -353,14 +353,14 @@ uint8_t sendCAN(void) {
 }
  80002d8:	4618      	mov	r0, r3
  80002da:	bd80      	pop	{r7, pc}
- 80002dc:	20000064 	.word	0x20000064
- 80002e0:	2000005c 	.word	0x2000005c
- 80002e4:	200000ac 	.word	0x200000ac
- 80002e8:	200000b0 	.word	0x200000b0
- 80002ec:	2000007c 	.word	0x2000007c
- 80002f0:	200000b4 	.word	0x200000b4
- 80002f4:	200000b6 	.word	0x200000b6
- 80002f8:	20000084 	.word	0x20000084
+ 80002dc:	20000030 	.word	0x20000030
+ 80002e0:	20000028 	.word	0x20000028
+ 80002e4:	20000078 	.word	0x20000078
+ 80002e8:	2000007c 	.word	0x2000007c
+ 80002ec:	20000048 	.word	0x20000048
+ 80002f0:	20000080 	.word	0x20000080
+ 80002f4:	20000082 	.word	0x20000082
+ 80002f8:	20000050 	.word	0x20000050
  80002fc:	40010800 	.word	0x40010800
 
 08000300 <command>:
@@ -444,12 +444,12 @@ uint8_t command(uint8_t cmd) {
 		break;
 
 	}
-	EE24_Write(&ee24, EE24_ADDRESS_DEFAULT,(uint8_t *) &offset,sizeof(offset),500);
+	EE24_Write(&ee24, 0,(uint8_t *) &offset,sizeof(offset),500);
  8000378:	f44f 73fa 	mov.w	r3, #500	@ 0x1f4
  800037c:	9300      	str	r3, [sp, #0]
- 800037e:	2340      	movs	r3, #64	@ 0x40
+ 800037e:	231c      	movs	r3, #28
  8000380:	4a05      	ldr	r2, [pc, #20]	@ (8000398 <command+0x98>)
- 8000382:	21a0      	movs	r1, #160	@ 0xa0
+ 8000382:	2100      	movs	r1, #0
  8000384:	4805      	ldr	r0, [pc, #20]	@ (800039c <command+0x9c>)
  8000386:	f000 fa7b 	bl	8000880 <EE24_Write>
 	return 1;
@@ -459,9 +459,9 @@ uint8_t command(uint8_t cmd) {
  800038e:	3708      	adds	r7, #8
  8000390:	46bd      	mov	sp, r7
  8000392:	bd80      	pop	{r7, pc}
- 8000394:	20000240 	.word	0x20000240
- 8000398:	20000200 	.word	0x20000200
- 800039c:	200001e4 	.word	0x200001e4
+ 8000394:	200001e4 	.word	0x200001e4
+ 8000398:	200001c8 	.word	0x200001c8
+ 800039c:	200001b0 	.word	0x200001b0
 
 080003a0 <checkPersistance>:
  */
@@ -741,7 +741,7 @@ void MX_ADC1_Init(void)
  800050e:	46bd      	mov	sp, r7
  8000510:	bd80      	pop	{r7, pc}
  8000512:	bf00      	nop
- 8000514:	200000b8 	.word	0x200000b8
+ 8000514:	20000084 	.word	0x20000084
  8000518:	40012400 	.word	0x40012400
 
 0800051c <HAL_ADC_MspInit>:
@@ -900,7 +900,7 @@ void HAL_ADC_MspInit(ADC_HandleTypeDef* adcHandle)
  8000608:	40021000 	.word	0x40021000
  800060c:	40010800 	.word	0x40010800
  8000610:	40010c00 	.word	0x40010c00
- 8000614:	200000e8 	.word	0x200000e8
+ 8000614:	200000b4 	.word	0x200000b4
  8000618:	40020008 	.word	0x40020008
 
 0800061c <MX_CAN_Init>:
@@ -1020,7 +1020,7 @@ void MX_CAN_Init(void)
  80006b2:	3728      	adds	r7, #40	@ 0x28
  80006b4:	46bd      	mov	sp, r7
  80006b6:	bd80      	pop	{r7, pc}
- 80006b8:	2000012c 	.word	0x2000012c
+ 80006b8:	200000f8 	.word	0x200000f8
  80006bc:	40006400 	.word	0x40006400
 
 080006c0 <HAL_CAN_MspInit>:
@@ -1659,7 +1659,7 @@ void MX_I2C1_Init(void)
 }
  8000a14:	bf00      	nop
  8000a16:	bd80      	pop	{r7, pc}
- 8000a18:	20000190 	.word	0x20000190
+ 8000a18:	2000015c 	.word	0x2000015c
  8000a1c:	40005400 	.word	0x40005400
  8000a20:	00061a80 	.word	0x00061a80
 
@@ -1809,11 +1809,11 @@ int main(void) {
 	while (1) {
  8000ae0:	bf00      	nop
  8000ae2:	e7fd      	b.n	8000ae0 <main+0x40>
- 8000ae4:	20000190 	.word	0x20000190
- 8000ae8:	200001e4 	.word	0x200001e4
- 8000aec:	200000b8 	.word	0x200000b8
- 8000af0:	20000250 	.word	0x20000250
- 8000af4:	2000012c 	.word	0x2000012c
+ 8000ae4:	2000015c 	.word	0x2000015c
+ 8000ae8:	200001b0 	.word	0x200001b0
+ 8000aec:	20000084 	.word	0x20000084
+ 8000af0:	200001f4 	.word	0x200001f4
+ 8000af4:	200000f8 	.word	0x200000f8
 
 08000af8 <SystemClock_Config>:
 
@@ -2005,13 +2005,12 @@ void initPedal(ADC_HandleTypeDef* hadc) {
  8000bee:	687b      	ldr	r3, [r7, #4]
  8000bf0:	6013      	str	r3, [r2, #0]
 	//Carga de los offsets
-	//EEPROM_Read(0,0, (uint8_t *) &offset, sizeof(offset));
-	EE24_Read(&ee24,EE24_ADDRESS_DEFAULT,(uint8_t *) &offset,sizeof(offset),500);
+	EE24_Read(&ee24,0,(uint8_t *) &offset,sizeof(offset),500);
  8000bf2:	f44f 73fa 	mov.w	r3, #500	@ 0x1f4
  8000bf6:	9300      	str	r3, [sp, #0]
- 8000bf8:	2340      	movs	r3, #64	@ 0x40
+ 8000bf8:	231c      	movs	r3, #28
  8000bfa:	4a1b      	ldr	r2, [pc, #108]	@ (8000c68 <initPedal+0x84>)
- 8000bfc:	21a0      	movs	r1, #160	@ 0xa0
+ 8000bfc:	2100      	movs	r1, #0
  8000bfe:	481b      	ldr	r0, [pc, #108]	@ (8000c6c <initPedal+0x88>)
  8000c00:	f7ff fe12 	bl	8000828 <EE24_Read>
 	//Check if there are offsets written in flash
@@ -2048,13 +2047,12 @@ void initPedal(ADC_HandleTypeDef* hadc) {
  8000c36:	4b0c      	ldr	r3, [pc, #48]	@ (8000c68 <initPedal+0x84>)
  8000c38:	2201      	movs	r2, #1
  8000c3a:	761a      	strb	r2, [r3, #24]
-		//EEPROM_Write(0,0,(uint8_t *) &offset,  sizeof(offset));
-		EE24_Write(&ee24, EE24_ADDRESS_DEFAULT,(uint8_t *) &offset,sizeof(offset),500);
+		EE24_Write(&ee24,0,(uint8_t *) &offset,sizeof(offset),500);
  8000c3c:	f44f 73fa 	mov.w	r3, #500	@ 0x1f4
  8000c40:	9300      	str	r3, [sp, #0]
- 8000c42:	2340      	movs	r3, #64	@ 0x40
+ 8000c42:	231c      	movs	r3, #28
  8000c44:	4a08      	ldr	r2, [pc, #32]	@ (8000c68 <initPedal+0x84>)
- 8000c46:	21a0      	movs	r1, #160	@ 0xa0
+ 8000c46:	2100      	movs	r1, #0
  8000c48:	4808      	ldr	r0, [pc, #32]	@ (8000c6c <initPedal+0x88>)
  8000c4a:	f7ff fe19 	bl	8000880 <EE24_Write>
 	}
@@ -2074,10 +2072,10 @@ void initPedal(ADC_HandleTypeDef* hadc) {
  8000c5e:	3708      	adds	r7, #8
  8000c60:	46bd      	mov	sp, r7
  8000c62:	bd80      	pop	{r7, pc}
- 8000c64:	200001ec 	.word	0x200001ec
- 8000c68:	20000200 	.word	0x20000200
- 8000c6c:	200001e4 	.word	0x200001e4
- 8000c70:	20000240 	.word	0x20000240
+ 8000c64:	200001b8 	.word	0x200001b8
+ 8000c68:	200001c8 	.word	0x200001c8
+ 8000c6c:	200001b0 	.word	0x200001b0
+ 8000c70:	200001e4 	.word	0x200001e4
 
 08000c74 <readSensors>:
 
@@ -2300,13 +2298,13 @@ void readSensors() {
  8000e0e:	bf00      	nop
  8000e10:	46bd      	mov	sp, r7
  8000e12:	bd80      	pop	{r7, pc}
- 8000e14:	20000240 	.word	0x20000240
- 8000e18:	200000b0 	.word	0x200000b0
- 8000e1c:	20000200 	.word	0x20000200
- 8000e20:	200001f4 	.word	0x200001f4
- 8000e24:	200001f9 	.word	0x200001f9
- 8000e28:	200001f0 	.word	0x200001f0
- 8000e2c:	200001f8 	.word	0x200001f8
+ 8000e14:	200001e4 	.word	0x200001e4
+ 8000e18:	2000007c 	.word	0x2000007c
+ 8000e1c:	200001c8 	.word	0x200001c8
+ 8000e20:	200001c0 	.word	0x200001c0
+ 8000e24:	200001c5 	.word	0x200001c5
+ 8000e28:	200001bc 	.word	0x200001bc
+ 8000e2c:	200001c4 	.word	0x200001c4
  8000e30:	40010800 	.word	0x40010800
 
 08000e34 <HAL_MspInit>:
@@ -2568,7 +2566,7 @@ void USB_LP_CAN1_RX0_IRQHandler(void)
  8000f0a:	bf00      	nop
  8000f0c:	bd80      	pop	{r7, pc}
  8000f0e:	bf00      	nop
- 8000f10:	2000012c 	.word	0x2000012c
+ 8000f10:	200000f8 	.word	0x200000f8
 
 08000f14 <TIM2_IRQHandler>:
 
@@ -2592,7 +2590,7 @@ void TIM2_IRQHandler(void)
  8000f1e:	bf00      	nop
  8000f20:	bd80      	pop	{r7, pc}
  8000f22:	bf00      	nop
- 8000f24:	20000250 	.word	0x20000250
+ 8000f24:	200001f4 	.word	0x200001f4
 
 08000f28 <SystemInit>:
   * @note   This function should be used only after reset.
@@ -2721,7 +2719,7 @@ void MX_TIM2_Init(void)
  8000fc2:	3718      	adds	r7, #24
  8000fc4:	46bd      	mov	sp, r7
  8000fc6:	bd80      	pop	{r7, pc}
- 8000fc8:	20000250 	.word	0x20000250
+ 8000fc8:	200001f4 	.word	0x200001f4
 
 08000fcc <HAL_TIM_Base_MspInit>:
 
@@ -2856,9 +2854,9 @@ LoopFillZerobss:
   ldr r2, =_sidata
  8001050:	08005638 	.word	0x08005638
   ldr r2, =_sbss
- 8001054:	20000040 	.word	0x20000040
+ 8001054:	2000000c 	.word	0x2000000c
   ldr r4, =_ebss
- 8001058:	20000308 	.word	0x20000308
+ 8001058:	200002ac 	.word	0x200002ac
 
 0800105c <ADC1_2_IRQHandler>:
  * @retval : None
@@ -3326,7 +3324,7 @@ __weak void HAL_IncTick(void)
  80012f0:	bc80      	pop	{r7}
  80012f2:	4770      	bx	lr
  80012f4:	20000008 	.word	0x20000008
- 80012f8:	20000304 	.word	0x20000304
+ 80012f8:	200002a8 	.word	0x200002a8
 
 080012fc <HAL_GetTick>:
   * @note  This function is declared as __weak to be overwritten in case of other
@@ -3345,7 +3343,7 @@ __weak uint32_t HAL_GetTick(void)
  8001306:	46bd      	mov	sp, r7
  8001308:	bc80      	pop	{r7}
  800130a:	4770      	bx	lr
- 800130c:	20000304 	.word	0x20000304
+ 800130c:	200002a8 	.word	0x200002a8
 
 08001310 <HAL_Delay>:
   *       implementations in user file.

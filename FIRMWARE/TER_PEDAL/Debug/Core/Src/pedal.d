@@ -30,9 +30,8 @@ Core/Src/pedal.o: ../Core/Src/pedal.c ../Core/Inc/pedal.h \
  ../Core/Inc/adc.h ../Core/Inc/main.h ../Core/Inc/TeR_UTILS.h \
  ../Core/Inc/TeR_CAN.h \
  C:/Users/COLEGIO/OneDrive\ -\ SM/Documentos/Tecnun\ Eracing/TeR_PEDAL/FIRMWARE/TER_PEDAL/DBC/ter.h \
- ../Core/Inc/pedal.h ../Core/Inc/can.h ../Core/Inc/EEPROM.h \
- ../Core/Inc/i2c.h ../Core/Inc/ee24.h \
- ../Core/Inc/NimaLTD.I-CUBE-EE24_conf.h
+ ../Core/Inc/pedal.h ../Core/Inc/can.h ../Core/Inc/ee24.h \
+ ../Core/Inc/i2c.h ../Core/Inc/NimaLTD.I-CUBE-EE24_conf.h
 ../Core/Inc/pedal.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:
 ../Core/Inc/stm32f1xx_hal_conf.h:
@@ -69,7 +68,6 @@ Core/Src/pedal.o: ../Core/Src/pedal.c ../Core/Inc/pedal.h \
 C:/Users/COLEGIO/OneDrive\ -\ SM/Documentos/Tecnun\ Eracing/TeR_PEDAL/FIRMWARE/TER_PEDAL/DBC/ter.h:
 ../Core/Inc/pedal.h:
 ../Core/Inc/can.h:
-../Core/Inc/EEPROM.h:
-../Core/Inc/i2c.h:
 ../Core/Inc/ee24.h:
+../Core/Inc/i2c.h:
 ../Core/Inc/NimaLTD.I-CUBE-EE24_conf.h:
