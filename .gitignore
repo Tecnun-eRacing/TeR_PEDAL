@@ -13,6 +13,7 @@
 # KiCad user-specific settings
 fp-lib-table
 sym-lib-table
+fp-info-cache
 *.caches
 *.kicad_prl
 
@@ -26,6 +27,7 @@ sym-lib-table
 *.xml
 *.net
 *.bck
-*.sch-bak
+*.-bak
 *.lck
 production/
+
