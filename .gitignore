@@ -4,11 +4,28 @@
 [Dd]ebug/
 *.launch
 
-# KiCad
-*-backups/
+# KiCad backup and autosave files
+*.bak
+*.bck
+*.tmp
+*.autosave
+
+# KiCad user-specific settings
+fp-lib-table
+sym-lib-table
+*.caches
 *.kicad_prl
-*fp-info-cache
-\#auto_saved_files\#
+*.kicad_wks
+
+# KiCad build files
+*-backups/
+*-cache.lib
+*-rescue.lib
+*-rescue.kicad_sym
+*-rescue.dcm
+*-rescue.kicad_mod
+*.xml
+*.net
+*.bck
+*.sch-bak
 *.lck
-# Fabrication Toolkit
-production/
