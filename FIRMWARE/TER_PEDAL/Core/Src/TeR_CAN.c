@@ -26,6 +26,7 @@
  */
 
 #include "TeR_CAN.h"
+volatile uint32_t boot_flag __attribute__((section(".no_init")));
 
 /* ---------------------------[Estructuras del CAN]-------------------------- */
 //Pointer to timer and can peripheral being used
@@ -86,7 +87,15 @@ uint8_t decodeMsg(uint32_t canId, uint8_t *data) {
 	case TER_COMMAND_FRAME_ID:
 		command(data[0]); //Llama a la interpretación del comando
 		break;
-
+	case BOOTER_BOOT_TX_FRAME_ID:
+		struct booter_boot_tx_t boot;
+		booter_boot_tx_init(&boot);
+		booter_boot_tx_unpack(&boot, data, sizeof(TxData));
+		if((boot.boot_cmd == BOOTER_BOOT_TX_BOOT_CMD_BOOT_INIT_CHOICE) && (boot.node_id == BOOTER_BOOT_TX_NODE_ID_PEDAL_CHOICE)){
+		boot_flag = 0xBACABACA;
+		HAL_NVIC_SystemReset();
+		}
+		break;
 	default:
 		return -1;
 		break;

@@ -53,6 +53,9 @@ default.size.stdout \
 OBJDUMP_LIST += \
 TER_PEDAL.list \
 
+OBJCOPY_HEX += \
+TER_PEDAL.hex \
+
 
 # All Target
 all: main-build
@@ -61,8 +64,8 @@ all: main-build
 main-build: TER_PEDAL.elf secondary-outputs
 
 # Tool invocations
-TER_PEDAL.elf TER_PEDAL.map: $(OBJS) $(USER_OBJS) C:\Users\COLEGIO\OneDrive\ -\ SM\Documentos\Tecnun\ Eracing\TeR_PEDAL\FIRMWARE\TER_PEDAL\STM32F103C8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "TER_PEDAL.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"C:\Users\COLEGIO\OneDrive - SM\Documentos\Tecnun Eracing\TeR_PEDAL\FIRMWARE\TER_PEDAL\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TER_PEDAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+TER_PEDAL.elf TER_PEDAL.map: $(OBJS) $(USER_OBJS) /home/piero/Escritorio/ERACING/TeR_PEDAL/FIRMWARE/TER_PEDAL/STM32F103C8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "TER_PEDAL.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"/home/piero/Escritorio/ERACING/TeR_PEDAL/FIRMWARE/TER_PEDAL/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TER_PEDAL.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -76,12 +79,17 @@ TER_PEDAL.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
+TER_PEDAL.hex: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objcopy  -O ihex $(EXECUTABLES) "TER_PEDAL.hex"
+	@echo 'Finished building: $@'
+	@echo ' '
+
 # Other Targets
 clean:
-	-$(RM) TER_PEDAL.elf TER_PEDAL.list TER_PEDAL.map default.size.stdout
+	-$(RM) TER_PEDAL.elf TER_PEDAL.hex TER_PEDAL.list TER_PEDAL.map default.size.stdout
 	-@echo ' '
 
-secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)
+secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST) $(OBJCOPY_HEX)
 
 fail-specified-linker-script-missing:
 	@echo 'Error: Cannot find the specified linker script. Check the linker settings in the build configuration.'

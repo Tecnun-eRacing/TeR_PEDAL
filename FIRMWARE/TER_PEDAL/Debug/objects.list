@@ -16,6 +16,7 @@
 "./Core/Src/tim.o"
 "./Core/Startup/startup_stm32f103c8tx.o"
 "./DBC/all.o"
+"./DBC/booter.o"
 "./DBC/charger.o"
 "./DBC/hvbms.o"
 "./DBC/inverter.o"
