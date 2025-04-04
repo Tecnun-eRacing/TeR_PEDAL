@@ -22,6 +22,7 @@
 
 /* USER CODE BEGIN 0 */
 #include "ter.h"
+#include "booter.h"
 
 /* USER CODE END 0 */
 
@@ -57,12 +58,12 @@ void MX_CAN_Init(void) {
 	canfilterconfig.FilterActivation = CAN_FILTER_ENABLE; // El filtro debe estar ACTIVADO
 	canfilterconfig.FilterBank = 0;
 	canfilterconfig.FilterFIFOAssignment = CAN_FILTER_FIFO0;
-	canfilterconfig.FilterIdHigh = 0;          // ID alto = 0
-	canfilterconfig.FilterIdLow = 0;           // ID bajo = 0
+	canfilterconfig.FilterIdHigh = (TER_COMMAND_FRAME_ID << 5);          // ID alto = 0
+	canfilterconfig.FilterIdLow = ((BOOTER_BOOT_TX_FRAME_ID << 5));           // ID bajo = 0
 	canfilterconfig.FilterMaskIdHigh = 0; // Máscara alta = 0 (no verifica bits)
 	canfilterconfig.FilterMaskIdLow = 0;  // Máscara baja = 0 (no verifica bits)
-	canfilterconfig.FilterMode = CAN_FILTERMODE_IDMASK; // Modo de máscara
-	canfilterconfig.FilterScale = CAN_FILTERSCALE_32BIT; // Escala de 32 bits
+	canfilterconfig.FilterMode = CAN_FILTERMODE_IDLIST; // Modo de máscara
+	canfilterconfig.FilterScale = CAN_FILTERSCALE_16BIT; // Escala de 32 bits
 	canfilterconfig.SlaveStartFilterBank = 0;
 	HAL_CAN_ConfigFilter(&hcan, &canfilterconfig);
 	/* USER CODE END CAN_Init 2 */
