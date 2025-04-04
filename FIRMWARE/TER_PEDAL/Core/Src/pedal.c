@@ -61,8 +61,6 @@ void readSensors() {
 	TeR.apps.imp_flag = (impDelta || impRange); //Determine existing implausability
 	//Computa la media
 	TeR.apps.apps_av = TeR.apps.imp_flag ? 0 :(TeR.apps.apps_2 + TeR.apps.apps_1) / 2;
-
-
 	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, TeR.apps.imp_flag); //Actualizamos el estado del led
 }
 
