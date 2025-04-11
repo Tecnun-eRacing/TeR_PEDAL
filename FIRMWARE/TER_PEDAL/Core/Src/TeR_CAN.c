@@ -92,7 +92,7 @@ uint8_t decodeMsg(uint32_t canId, uint8_t *data) {
 		booter_boot_tx_init(&boot);
 		booter_boot_tx_unpack(&boot, data, sizeof(TxData));
 		if((boot.boot_cmd == BOOTER_BOOT_TX_BOOT_CMD_BOOT_INIT_CHOICE) && (boot.node_id == BOOTER_BOOT_TX_NODE_ID_PEDAL_CHOICE)){
-		boot_flag = 0xBACABACA;
+		boot_flag = 1;
 		HAL_NVIC_SystemReset();
 		}
 		break;
