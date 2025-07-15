@@ -16,3 +16,10 @@
 
 # Fabrication Toolkit
 /HARDWARE/production/
+
+
+# Build folder
+
+*/Debug/
+*/Release/
+
