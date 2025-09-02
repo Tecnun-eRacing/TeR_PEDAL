@@ -30,11 +30,11 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Core/Inc/adc.h ../Core/Inc/main.h ../Core/Inc/can.h ../Core/Inc/dma.h \
  ../Core/Inc/i2c.h ../Core/Inc/tim.h ../Core/Inc/gpio.h \
  ../Core/Inc/TeR_CAN.h \
- /home/eracing/git/TeR_PEDAL/FIRMWARE/TER_PEDAL/DBC/ter.h \
+ /home/piero/Escritorio/ERACING/TeR_PEDAL/FIRMWARE/TER_PEDAL/DBC/ter.h \
  ../Core/Inc/pedal.h ../Core/Inc/adc.h ../Core/Inc/TeR_UTILS.h \
  ../Core/Inc/TeR_CAN.h ../Core/Inc/ee24.h ../Core/Inc/i2c.h \
  ../Core/Inc/NimaLTD.I-CUBE-EE24_conf.h ../Core/Inc/can.h \
- /home/eracing/git/TeR_PEDAL/FIRMWARE/TER_PEDAL/DBC/booter.h \
+ /home/piero/Escritorio/ERACING/TeR_PEDAL/FIRMWARE/TER_PEDAL/DBC/booter.h \
  ../Core/Inc/pedal.h
 ../Core/Inc/main.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:
@@ -73,7 +73,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Core/Inc/tim.h:
 ../Core/Inc/gpio.h:
 ../Core/Inc/TeR_CAN.h:
-/home/eracing/git/TeR_PEDAL/FIRMWARE/TER_PEDAL/DBC/ter.h:
+/home/piero/Escritorio/ERACING/TeR_PEDAL/FIRMWARE/TER_PEDAL/DBC/ter.h:
 ../Core/Inc/pedal.h:
 ../Core/Inc/adc.h:
 ../Core/Inc/TeR_UTILS.h:
@@ -82,5 +82,5 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Core/Inc/i2c.h:
 ../Core/Inc/NimaLTD.I-CUBE-EE24_conf.h:
 ../Core/Inc/can.h:
-/home/eracing/git/TeR_PEDAL/FIRMWARE/TER_PEDAL/DBC/booter.h:
+/home/piero/Escritorio/ERACING/TeR_PEDAL/FIRMWARE/TER_PEDAL/DBC/booter.h:
 ../Core/Inc/pedal.h:
