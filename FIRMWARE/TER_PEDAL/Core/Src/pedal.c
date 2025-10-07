@@ -50,8 +50,7 @@ void readSensors() {
 	TeR.apps.apps_1 = map(adcReadings[1], offset.low[1], offset.high[1], 0,
 			255); //Lectura del APPS2
 	TeR.steer.angle = map(adcReadings[0], offset.low[0], offset.high[0],
-	-MAXWHEELANGLE, MAXWHEELANGLE); //Lectura ANGULO de giro (Poner factor)
-
+	-MAXWHEELANGLE, MAXWHEELANGLE); //Lectura ANGULO de giro
 
 
 	//Check for implausability T 11.8.9 Desviacion de 10 puntos en %
