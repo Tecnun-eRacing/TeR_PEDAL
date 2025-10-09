@@ -49,10 +49,8 @@ void readSensors() {
 			255); //Lectura de APPS1
 	TeR.apps.apps_1 = map(adcReadings[1], offset.low[1], offset.high[1], 0,
 			255); //Lectura del APPS2
-	TeR.steer.angle = map(adcReadings[0], offset.low[0], offset.high[0],
-	-MAXWHEELANGLE, MAXWHEELANGLE); //Lectura ANGULO de giro
-
-
+	TeR.steer.angle = -(map(adcReadings[0], offset.low[0], offset.high[0],
+	-MAXWHEELANGLE, MAXWHEELANGLE)); //Lectura ANGULO de giro
 	//Check for implausability T 11.8.9 Desviacion de 10 puntos en %
 	impDelta = !checkPersistance(&RANGE_IMP,(abs(TeR.apps.apps_1 - TeR.apps.apps_2) < (255 * 0.1)),100);//Comprueba que la diferencia entre aceleradores es menor que el 10% activamente, solo falla si esta se da por más de 100ms
 	//Check if all signals are in range

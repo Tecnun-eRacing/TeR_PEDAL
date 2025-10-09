@@ -154,11 +154,11 @@ uint8_t command(uint8_t cmd) {
 		offset.high[1] = adcReadings[1];
 		break;
 
-	case TER_COMMAND_CMD_CALIBRATE_STEER_RIGHTEST_CHOICE: //Calibrate Rightest Steer Position
+	case TER_COMMAND_CMD_CALIBRATE_STEER_LEFTEST_CHOICE: //Calibrate Rightest Steer Position
 		offset.low[0] = adcReadings[0]; //Recoje el valor actual
 		break;
 
-	case TER_COMMAND_CMD_CALIBRATE_STEER_LEFTEST_CHOICE: //Calibrate Leftest Steer Position
+	case TER_COMMAND_CMD_CALIBRATE_STEER_RIGHTEST_CHOICE: //Calibrate Leftest Steer Position
 		offset.high[0] = adcReadings[0]; //Recoje el valor actual
 		break;
 
