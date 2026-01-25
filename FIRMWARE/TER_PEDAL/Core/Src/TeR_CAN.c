@@ -26,6 +26,7 @@
  */
 
 #include "TeR_CAN.h"
+volatile uint32_t boot_flag __attribute__((section(".no_init")));
 
 /* ---------------------------[Estructuras del CAN]-------------------------- */
 //Pointer to timer and can peripheral being used
@@ -43,6 +44,9 @@ uint8_t RxData[8];
 
 //Variable msgIndex para la cola de envio
 uint8_t msgIndex = 0; //Hasta 255 mensajes
+
+//eeprom library handler
+extern EE24_HandleTypeDef ee24;
 /* -------------------------------------------------------------------------- */
 
 struct TeR_t TeR;
@@ -83,7 +87,15 @@ uint8_t decodeMsg(uint32_t canId, uint8_t *data) {
 	case TER_COMMAND_FRAME_ID:
 		command(data[0]); //Llama a la interpretación del comando
 		break;
-
+	case BOOTER_BOOT_TX_FRAME_ID:
+		struct booter_boot_tx_t boot;
+		booter_boot_tx_init(&boot);
+		booter_boot_tx_unpack(&boot, data, sizeof(TxData));
+		if((boot.boot_cmd == BOOTER_BOOT_TX_BOOT_CMD_BOOT_INIT_CHOICE) && (boot.node_id == BOOTER_BOOT_TX_NODE_ID_PEDAL_CHOICE)){
+		boot_flag = 1;
+		HAL_NVIC_SystemReset();
+		}
+		break;
 	default:
 		return -1;
 		break;
@@ -135,24 +147,19 @@ uint8_t command(uint8_t cmd) {
 	case TER_COMMAND_CMD_CALIBRATE_APPS_MIN_CHOICE: //Calibrate ACC 0% Pos and Store
 		offset.low[2] = adcReadings[2]; //Recoje el valor actual
 		offset.low[1] = adcReadings[1];
-		ee_writeToRam(0, sizeof(offset), (uint8_t*) &offset); //Almacena
-		ee_commit();
 		break;
 
 	case TER_COMMAND_CMD_CALIBRATE_APPS_MAX_CHOICE: //Calibrate ACC 100% Pos and Store
 		offset.high[2] = adcReadings[2]; //Recoje el valor actual
 		offset.high[1] = adcReadings[1];
-		ee_writeToRam(0, sizeof(offset), (uint8_t*) &offset); //Almacena
 		break;
 
-	case TER_COMMAND_CMD_CALIBRATE_STEER_RIGHTEST_CHOICE: //Calibrate Rightest Steer Position
+	case TER_COMMAND_CMD_CALIBRATE_STEER_LEFTEST_CHOICE: //Calibrate Rightest Steer Position
 		offset.low[0] = adcReadings[0]; //Recoje el valor actual
-		ee_writeToRam(0, sizeof(offset), (uint8_t*) &offset); //Almacena
 		break;
 
-	case TER_COMMAND_CMD_CALIBRATE_STEER_LEFTEST_CHOICE: //Calibrate Leftest Steer Position
+	case TER_COMMAND_CMD_CALIBRATE_STEER_RIGHTEST_CHOICE: //Calibrate Leftest Steer Position
 		offset.high[0] = adcReadings[0]; //Recoje el valor actual
-		ee_writeToRam(0, sizeof(offset), (uint8_t*) &offset); //Almacena
 		break;
 
 	default:
@@ -160,6 +167,6 @@ uint8_t command(uint8_t cmd) {
 		break;
 
 	}
-	ee_commit(); //Almacena en la flash la calibración
+	EE24_Write(&ee24, 0,(uint8_t *) &offset,sizeof(offset),500);
 	return 1;
 }

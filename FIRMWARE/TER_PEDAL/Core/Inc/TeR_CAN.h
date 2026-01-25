@@ -35,6 +35,7 @@
 #include "stm32f1xx_hal.h"
 #include "pedal.h"
 #include "can.h"
+#include "booter.h"
 /* --------------------- Estructuras de datos del coche ----------------- */
 //TER.dbc
 struct TeR_t{
