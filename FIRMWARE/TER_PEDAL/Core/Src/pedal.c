@@ -11,6 +11,7 @@ ADC_HandleTypeDef *adc;
 //Implausabilities
 persist_t DELTA_IMP;
 persist_t RANGE_IMP;
+persist_t STEER_IMP;
 uint8_t impRange; //1 if signals are out of range
 uint8_t impDelta; //1 if APPS difference exceeds 10% of total range
 //Offsets de los sensores {Steer,APPS1,APPS2,Brake}
@@ -59,5 +60,7 @@ void readSensors() {
 	//Computa la media
 	TeR.apps.apps_av = TeR.apps.imp_flag ? 0 :(TeR.apps.apps_2 + TeR.apps.apps_1) / 2;
 	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, TeR.apps.imp_flag); //Actualizamos el estado del led
+
+	TeR.steer.imp_flag = !checkPersistance(&STEER_IMP, ((adcReadings[0] > (offset.low[0] -MARGIN)) && (adcReadings[0] < (offset.high[0] + MARGIN)) ), 500);
 }
 
