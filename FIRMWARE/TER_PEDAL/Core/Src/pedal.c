@@ -62,5 +62,6 @@ void readSensors() {
 	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, TeR.apps.imp_flag); //Actualizamos el estado del led
 
 	TeR.steer.imp_flag = !checkPersistance(&STEER_IMP, ((adcReadings[0] > (offset.low[0] -MARGIN)) && (adcReadings[0] < (offset.high[0] + MARGIN)) ), 500);
+
 }
 
